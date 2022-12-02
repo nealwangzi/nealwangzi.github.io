@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nealwangzi.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="session 711 今天我们主要了解下NSURLSession 在iOS10中的新变化，以及我们怎么样更好的使用他。 主要分为3点： iOS10中API做了对应的拓展，丰富了功能。 聊聊安全性相关内容 开发者如何更优雅地使用    1.API拓展1.0 历史 在了解最新的API的时候，我们还是需要关注下我们高级网络API的一些历史。    如图，在iOS7之前，我们一直使用的是NSURLCon">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WWDC16 NSURLSession：New Features and Best Practices">
+<meta property="og:url" content="https://nealwangzi.github.io/2016/09/09/20160909/index.html">
+<meta property="og:site_name" content="安东尼的博客">
+<meta property="og:description" content="session 711 今天我们主要了解下NSURLSession 在iOS10中的新变化，以及我们怎么样更好的使用他。 主要分为3点： iOS10中API做了对应的拓展，丰富了功能。 聊聊安全性相关内容 开发者如何更优雅地使用    1.API拓展1.0 历史 在了解最新的API的时候，我们还是需要关注下我们高级网络API的一些历史。    如图，在iOS7之前，我们一直使用的是NSURLCon">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-af1c3c72ca346335.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-f8767e5bd612dde0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-6b1d39c13757ca11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-6435075cd8fcabb7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-a17ed48f1a73a848.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2016-09-09T08:23:37.000Z">
+<meta property="article:modified_time" content="2018-06-06T08:24:56.000Z">
+<meta property="article:author" content="neal">
+<meta property="article:tag" content="日常,分享">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/425102-af1c3c72ca346335.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+<link rel="canonical" href="https://nealwangzi.github.io/2016/09/09/20160909/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>WWDC16 NSURLSession：New Features and Best Practices | 安东尼的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">安东尼的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2016/09/09/20160909/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          WWDC16 NSURLSession：New Features and Best Practices
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-09-09 16:23:37" itemprop="dateCreated datePublished" datetime="2016-09-09T16:23:37+08:00">2016-09-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-06-06 16:24:56" itemprop="dateModified" datetime="2018-06-06T16:24:56+08:00">2018-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4 id="session-711"><a href="#session-711" class="headerlink" title="session 711"></a>session 711</h4><ul>
+<li>今天我们主要了解下NSURLSession 在iOS10中的新变化，以及我们怎么样更好的使用他。</li>
+<li>主要分为3点：<ul>
+<li>iOS10中API做了对应的拓展，丰富了功能。</li>
+<li>聊聊安全性相关内容</li>
+<li>开发者如何更优雅地使用</li>
+</ul>
+</li>
+</ul>
+<h3 id="1-API拓展"><a href="#1-API拓展" class="headerlink" title="1.API拓展"></a>1.API拓展</h3><h4 id="1-0-历史"><a href="#1-0-历史" class="headerlink" title="1.0 历史"></a>1.0 历史</h4><ul>
+<li>在了解最新的API的时候，我们还是需要关注下我们高级网络API的一些历史。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-af1c3c72ca346335.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="API对比"></p>
+<ul>
+<li>如图，在iOS7之前，我们一直使用的是NSURLConnection 作为网络请求的一大利器。随着时代的发展，我们需要保证网络数据的更好的使用。在13年的WWDC中，我们正式推出NSURLSession API保证使用。在经历了两个的过渡期，我们在15年把NSURLConnection正式否定。在此希望大家更好的使用NSURLSession。</li>
+</ul>
+<h4 id="1-1-NSURLSession的优点"><a href="#1-1-NSURLSession的优点" class="headerlink" title="1.1 NSURLSession的优点"></a>1.1 NSURLSession的优点</h4><ul>
+<li>它遵循了HTTP&#x2F;1.1,SPDY,HTTP&#x2F;2协议，基本覆盖了所有网络请求。</li>
+<li>使用App Transport Security（ATS），保证请求的安全性。必须使用HTTPs</li>
+<li>HTTP Strict Transport Security（HTST），保证数据传输过程安全</li>
+<li>不仅如此，在Cache，cookies，proxy，authentication 都进行了完善。</li>
+</ul>
+<h4 id="1-2-NSURLSession使用"><a href="#1-2-NSURLSession使用" class="headerlink" title="1.2 NSURLSession使用"></a>1.2 NSURLSession使用</h4><ul>
+<li>首先要知道的是，NSURLSessionConfiguration<ul>
+<li>configuration 可以设置请求的网络环境，（WIFI，移动数据）</li>
+<li>多样的传输类型设置：视频，音频，文本等数据 </li>
+<li>缓存规则</li>
+<li>cookie 规则</li>
+<li>存储空间大小的设置</li>
+<li>请求超时时间设置</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">     NSURLSessionConfiguration *congfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];</span><br><span class="line">    </span><br><span class="line">    NSURLSession *session = [NSURLSession sessionWithConfiguration:congfiguration];</span><br><span class="line">    NSString *url = @&quot;https://www.cloudoc.com&quot;;</span><br><span class="line">    </span><br><span class="line">    NSURLSessionTask *task = [session dataTaskWithURL:[NSURL URLWithString:url] completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    [task resume];</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>注意：我们不要每个session 对应一个task请求，而是可以一对多的形式，保证高效实用。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-f8767e5bd612dde0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Tips"></p>
+<p>####2.0 HTTP&#x2F;2 的介绍</p>
+<ul>
+<li>关于HTTP&#x2F;2 我们知道多少。</li>
+<li>异步连接多路复用；</li>
+<li>头部压缩；</li>
+<li>请求&#x2F;响应管线化；</li>
+<li>多路复用请求；</li>
+<li>对请求划分优先级；</li>
+<li>压缩HTTP头；</li>
+<li>服务器推送流（即Server Push技术）；</li>
+</ul>
+<h4 id="2-1-Server-Push"><a href="#2-1-Server-Push" class="headerlink" title="2.1 Server Push"></a>2.1 Server Push</h4><ul>
+<li>放置网络重复请求</li>
+<li>服务器需要支持http2.0协议</li>
+<li>最重要的是：直接适用于NSURLSession  客户端不用做任何处理</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-6b1d39c13757ca11.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="HTTP1.1"></p>
+<p>上图简单展示了一次HTTP1.1的请求。看以看到在每次请求的过程中都需要跟服务器进行一次通讯。从而延长的所有请求结束的时间。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-6435075cd8fcabb7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="HTTP2.0"></p>
+<p>在使用了server Push 的HTTP2.0会进一步缩短请求时间，并且可以看到服务器会一次性将所有数据都返回，从而，获取数据的时间得到了缩短。<br>提高了网络的利用率。</p>
+<h4 id="3-0-Network-statistics"><a href="#3-0-Network-statistics" class="headerlink" title="3.0 Network statistics"></a>3.0 Network statistics</h4><ul>
+<li>iOS10中新增对网络请求检测的API ，保证网络请求的准确。</li>
+<li>主要有以下几个特质：<ul>
+<li>监测弱网环境</li>
+<li>监测网络连接</li>
+<li>apple 全平台通用</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-1-API"><a href="#3-1-API" class="headerlink" title="3.1 API"></a>3.1 API</h4><ul>
+<li>主要有3个属性<ul>
+<li>1.taskInterval 链接时长</li>
+<li>2.redirectCount 重连次数</li>
+<li>3.transactionMetrics</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-2-NSURLSessionTaskTransactionMetrics"><a href="#3-2-NSURLSessionTaskTransactionMetrics" class="headerlink" title="3.2 NSURLSessionTaskTransactionMetrics"></a>3.2 NSURLSessionTaskTransactionMetrics</h4><ul>
+<li>主要使用这个API获取每个阶段的网络请求时常，等数据，来分析对应的网络请求。<br>下图就是简单的一次网络请求的需要的每一步分解。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-a17ed48f1a73a848.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="HTTP请求"></p>
+<h4 id="4-0-网络安全性"><a href="#4-0-网络安全性" class="headerlink" title="4.0 网络安全性"></a>4.0 网络安全性</h4><ul>
+<li>对传输数据进行加密</li>
+<li>不要在使用RC4加密算法（已经被公开）</li>
+<li>测试  $nucurl https:&#x2F;&#x2F;你的网址；</li>
+<li>$nucurl —enable-rc4 https:&#x2F;&#x2F;你的网址</li>
+<li>（iOS10最新的对网络安全访问）App Transport Security</li>
+<li>两个字段需要更新 NSAllowsArbitraryLoadsInWebContent（wkwebView）<br>NSRequiresCertificateTransparency</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/09/02/20160902/" rel="prev" title="WWDC16 Engineering Privacy for Your Users">
+      <i class="fa fa-chevron-left"></i> WWDC16 Engineering Privacy for Your Users
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/05/08/20170508/" rel="next" title="iOS 录音，播放 tips">
+      iOS 录音，播放 tips <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#session-711"><span class="nav-number">1.</span> <span class="nav-text">session 711</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-API%E6%8B%93%E5%B1%95"><span class="nav-number"></span> <span class="nav-text">1.API拓展</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-0-%E5%8E%86%E5%8F%B2"><span class="nav-number">1.</span> <span class="nav-text">1.0 历史</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-NSURLSession%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">2.</span> <span class="nav-text">1.1 NSURLSession的优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-NSURLSession%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">1.2 NSURLSession使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-Server-Push"><span class="nav-number">4.</span> <span class="nav-text">2.1 Server Push</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-0-Network-statistics"><span class="nav-number">5.</span> <span class="nav-text">3.0 Network statistics</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-API"><span class="nav-number">6.</span> <span class="nav-text">3.1 API</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-NSURLSessionTaskTransactionMetrics"><span class="nav-number">7.</span> <span class="nav-text">3.2 NSURLSessionTaskTransactionMetrics</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-0-%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8%E6%80%A7"><span class="nav-number">8.</span> <span class="nav-text">4.0 网络安全性</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="neal"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">neal</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:nealsherlock@gmail.com" title="E-Mail → mailto:nealsherlock@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">neal</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

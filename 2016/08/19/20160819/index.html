@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nealwangzi.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="What’s New in Accessibility developing for everyone session 202  通用-设置-辅助功能 简介： 主要是为让用户都都可以使用apple的产品。在apple的平台上面我们主要提供4个方向，方便更多的用户使用我们的产品。图：    Motor，帕金森等疾病的用户 Vision，失明及视力障碍等用户 Hearing，失聪用户 Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WWDC16 What’s New in Accessibility">
+<meta property="og:url" content="https://nealwangzi.github.io/2016/08/19/20160819/index.html">
+<meta property="og:site_name" content="安东尼的博客">
+<meta property="og:description" content="What’s New in Accessibility developing for everyone session 202  通用-设置-辅助功能 简介： 主要是为让用户都都可以使用apple的产品。在apple的平台上面我们主要提供4个方向，方便更多的用户使用我们的产品。图：    Motor，帕金森等疾病的用户 Vision，失明及视力障碍等用户 Hearing，失聪用户 Learning">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-2b612dc63a58fe4b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-68d1597141ef7110.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-7864912cb0e1ddf5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-74181d671926dbc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-af104fbfe8f4be48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-974c6bfec68444cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-56ec8c9cbba0e610.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-c1c92578be800d4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-963c32065351fc27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-7900a9350756b29a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-ed3704618ab5ae9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-a38f537d33ccdf4c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-e5b5a1b296b818c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-e40db6a154e1084a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-c6c145a9d0c915c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-3882dd2c998501b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-2691f010eb3862fb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-132643d886d08ad9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-4130fe109db4acd4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-6375d09e3722736e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-37383245828526a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2016-08-19T08:15:25.000Z">
+<meta property="article:modified_time" content="2018-06-06T08:17:59.000Z">
+<meta property="article:author" content="neal">
+<meta property="article:tag" content="日常,分享">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/425102-2b612dc63a58fe4b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+<link rel="canonical" href="https://nealwangzi.github.io/2016/08/19/20160819/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>WWDC16 What’s New in Accessibility | 安东尼的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">安东尼的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2016/08/19/20160819/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          WWDC16 What’s New in Accessibility
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-19 16:15:25" itemprop="dateCreated datePublished" datetime="2016-08-19T16:15:25+08:00">2016-08-19</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-06-06 16:17:59" itemprop="dateModified" datetime="2018-06-06T16:17:59+08:00">2018-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="What’s-New-in-Accessibility"><a href="#What’s-New-in-Accessibility" class="headerlink" title="What’s New in Accessibility"></a>What’s New in Accessibility</h2><ul>
+<li>developing for everyone</li>
+<li>session 202</li>
+</ul>
+<h2 id="通用-设置-辅助功能"><a href="#通用-设置-辅助功能" class="headerlink" title="通用-设置-辅助功能"></a>通用-设置-辅助功能</h2><ul>
+<li>简介： 主要是为让用户都都可以使用apple的产品。在apple的平台上面我们主要提供4个方向，方便更多的用户使用我们的产品。<br>图：</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-2b612dc63a58fe4b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_2.png"></p>
+<ul>
+<li>Motor，帕金森等疾病的用户</li>
+<li>Vision，失明及视力障碍等用户</li>
+<li>Hearing，失聪用户</li>
+<li>Learning，自闭症，语言障碍等用户</li>
+</ul>
+<h4 id="这个我们主要分享以下内容。"><a href="#这个我们主要分享以下内容。" class="headerlink" title="这个我们主要分享以下内容。"></a>这个我们主要分享以下内容。</h4><ul>
+<li>新的辅助功能（前平台都可以使用）。</li>
+<li>部分辅助功能的演示</li>
+<li>辅助功能相关API</li>
+<li>通过API来完善演示</li>
+</ul>
+<p>###新辅助功能</p>
+<ul>
+<li>一、Motor  <ul>
+<li>Switch Control 通过手指灯进行点击控制</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-68d1597141ef7110.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_1.png"></p>
+<pre><code>* Dwell Control 在macOSS,tvOS上的选择控制
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-7864912cb0e1ddf5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_3.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-74181d671926dbc0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_4.png"></p>
+<p>![Uploading Snip20160808_5_997604.png . . .]</p>
+<ul>
+<li>二、Vision<ul>
+<li>辅助功能中的反转颜色和灰度设置已经在iOS、macOS平台上很久了。<br>Display Adjustments（新），主要功能是调节颜色显示</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-af104fbfe8f4be48.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_6.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-974c6bfec68444cd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_7.png"></p>
+<pre><code>* watchOS 上，Taptic Time，会产生振动效果
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-56ec8c9cbba0e610.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_9.png"></p>
+<ul>
+<li>Magnifier（放大镜） 新功能</li>
+<li>通过打开相机，对想要放大的事物，通过摄像头进行放大，不仅仅可以放大，也可以对文字等进行变换色彩，以及改变背景，便于用户更好的阅读。</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-c1c92578be800d4f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_10.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-963c32065351fc27.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_12.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-7900a9350756b29a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_13.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-ed3704618ab5ae9c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_14.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-a38f537d33ccdf4c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_15.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-e5b5a1b296b818c9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_16.png"></p>
+<ul>
+<li>三、Hearing<ul>
+<li>目前国外使用的 Text Telephones (TTY)，俗称：聋哑人电话，在手机插入专用设备后支持收发文本，需网络支持，中国网络不支持TTY.<br>在软件方面，，我们也推出了Software TTY</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-e40db6a154e1084a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_17.png"></p>
+<ul>
+<li>四、Learning<ul>
+<li>Enhanced typing feedback(增强输入的反馈)，在输入文本的时候，可以实时对出相关输入的文本，确认是否是您想要表达的意思。</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-c6c145a9d0c915c0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_18.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-3882dd2c998501b8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_19.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-2691f010eb3862fb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_20.png"></p>
+<h4 id="Accessibility-API"><a href="#Accessibility-API" class="headerlink" title="Accessibility API"></a>Accessibility API</h4><ul>
+<li>Auditing Your App’s Accessibility</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-132643d886d08ad9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_25.png"></p>
+<ul>
+<li><p>1.打开voiceOver 或者 Switch Control。系统自带的声音就会说出您先选中的区域是什么名称，标签类别，交互方式，并出现友善的界面展示。使得使用更加便利。</p>
+</li>
+<li><p>当您在使用api进行处理的时候，可以使用Accessibility Inspector （检查），进行对辅助功能的检查。</p>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-4130fe109db4acd4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_21.png"></p>
+<p> 在 iOSX 中新的辅助功能Magnifier和系统进行交互，显示询问你是什么？接着问你是什么，最后问你在什么地方。如下，一次来反馈给用户。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-6375d09e3722736e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_23.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-37383245828526a2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160808_24.png"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/08/12/20160812/" rel="prev" title="WWDC16 Health and Fitness with Core Motion">
+      <i class="fa fa-chevron-left"></i> WWDC16 Health and Fitness with Core Motion
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/08/20/20160820/" rel="next" title="WWDC16 How iOS Security Really Works">
+      WWDC16 How iOS Security Really Works <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#What%E2%80%99s-New-in-Accessibility"><span class="nav-number">1.</span> <span class="nav-text">What’s New in Accessibility</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%9A%E7%94%A8-%E8%AE%BE%E7%BD%AE-%E8%BE%85%E5%8A%A9%E5%8A%9F%E8%83%BD"><span class="nav-number">2.</span> <span class="nav-text">通用-设置-辅助功能</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BF%99%E4%B8%AA%E6%88%91%E4%BB%AC%E4%B8%BB%E8%A6%81%E5%88%86%E4%BA%AB%E4%BB%A5%E4%B8%8B%E5%86%85%E5%AE%B9%E3%80%82"><span class="nav-number">2.0.1.</span> <span class="nav-text">这个我们主要分享以下内容。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Accessibility-API"><span class="nav-number">2.0.2.</span> <span class="nav-text">Accessibility API</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="neal"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">neal</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:nealsherlock@gmail.com" title="E-Mail → mailto:nealsherlock@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">neal</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nealwangzi.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="##How iOS Security Really Works####session 705   这次主要聊一聊iOS系统安全构造。iOS系统安全为何如此重要。大家页非常清楚，现在的智能手机，已经不仅仅是否作为联系的工具。手机作为21世纪人们都会有的一个东西。他十分便捷，但同时也时刻记录着我们的学习和生活，现在我们的个人信息都在一部手机中可以体现。  相比较而言，作为一部有很多隐私信息的设备，必然">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WWDC16 How iOS Security Really Works">
+<meta property="og:url" content="https://nealwangzi.github.io/2016/08/20/20160820/index.html">
+<meta property="og:site_name" content="安东尼的博客">
+<meta property="og:description" content="##How iOS Security Really Works####session 705   这次主要聊一聊iOS系统安全构造。iOS系统安全为何如此重要。大家页非常清楚，现在的智能手机，已经不仅仅是否作为联系的工具。手机作为21世纪人们都会有的一个东西。他十分便捷，但同时也时刻记录着我们的学习和生活，现在我们的个人信息都在一部手机中可以体现。  相比较而言，作为一部有很多隐私信息的设备，必然">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-e836dfbb504d7845.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-8c958f7ce30fbed4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-767c0e60df7adbf8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-9d32abf0ff163a1b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-35998cdbdcfb33de.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-377753d156a28658.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-b05f922dad99a20d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-0b23aea4fb7cd52a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-ea6ad75c63db60ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-20a071e3ec902c57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-447defcac1c4ef37.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2016-08-20T08:18:46.000Z">
+<meta property="article:modified_time" content="2018-06-06T08:20:24.000Z">
+<meta property="article:author" content="neal">
+<meta property="article:tag" content="日常,分享">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/425102-e836dfbb504d7845.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+<link rel="canonical" href="https://nealwangzi.github.io/2016/08/20/20160820/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>WWDC16 How iOS Security Really Works | 安东尼的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">安东尼的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2016/08/20/20160820/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          WWDC16 How iOS Security Really Works
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-08-20 16:18:46" itemprop="dateCreated datePublished" datetime="2016-08-20T16:18:46+08:00">2016-08-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-06-06 16:20:24" itemprop="dateModified" datetime="2018-06-06T16:20:24+08:00">2018-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>##How iOS Security Really Works<br>####session 705</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-e836dfbb504d7845.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160815_1.png"></p>
+<ul>
+<li><p>这次主要聊一聊iOS系统安全构造。iOS系统安全为何如此重要。大家页非常清楚，现在的智能手机，已经不仅仅是否作为联系的工具。手机作为21世纪人们都会有的一个东西。他十分便捷，但同时也时刻记录着我们的学习和生活，现在我们的个人信息都在一部手机中可以体现。</p>
+</li>
+<li><p>相比较而言，作为一部有很多隐私信息的设备，必然会引起一部分人的重视。那这部分人会是谁？主要还是一部分犯罪分子，其次就是相对于企业竞争的对手。其实，大部分的网络服务提供商也会出现获取用户信息的行为。</p>
+</li>
+<li><p>作为一名黑客，他们想要的是什么？</p>
+<ul>
+<li>必然是用户的个人信息，并进行监视。可以通过图片，信息，摄像头等进行操作。</li>
+<li>其次就是获取商业机密</li>
+<li>更加直接的就是经济利益</li>
+</ul>
+</li>
+<li><p>目前大部分的病毒，木马等都会发生在Android系统上面，而iOS系统上的病毒就很少。</p>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-8c958f7ce30fbed4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160815_4.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-767c0e60df7adbf8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160815_3.png"></p>
+<ul>
+<li>那么重点来，iOS系统是如何保持设备的安全性的。在iOS系统长达十年的历程中，apple 工程师都在保护着用的隐私。真正做到了对iOS系统的保护。</li>
+<li>iOS系统安全构建是通过哪些途径？<ul>
+<li>iOS平台自带安全系统</li>
+<li>iOS软件更新速度快</li>
+<li>iOS开发者应该创建安全性的app</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-9d32abf0ff163a1b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160815_5.png"></p>
+<h3 id="iOS平台自带安全系统"><a href="#iOS平台自带安全系统" class="headerlink" title="iOS平台自带安全系统"></a>iOS平台自带安全系统</h3><p><img src="http://upload-images.jianshu.io/upload_images/425102-35998cdbdcfb33de.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160815_6.png"></p>
+<ul>
+<li>从硬件方面，iOS的A系列处理器都是自带加密的。</li>
+<li>从软件方面，更多的安全性设置，访问权限控制，touchID使用，AppStore的使用。每一个都是通过安全检验的。便捷的系统升级，保证安全性。</li>
+<li>安全性表现 <ul>
+<li>安全引导 <ul>
+<li>A系列处理器的安全引导机制，通过设备开机后，application processor 去引导Boot RoM（只读），通过apple Public Key 进行认证，通过后进入Low-Level Bootloader（LLB），key验证通过后到iboot，接着到Kernel，最后验证通过才会进入iOS系统。apple key 只有apple 可以管理。不仅如此，在每次更新系统的时候，都需要和apple 服务器进行验证，从而获得升级。</li>
+</ul>
+</li>
+<li>数据保护</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-377753d156a28658.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160815_9.png"></p>
+<pre><code>   * 在ios设备上，目前使用的都是企业级的安全防护。当解锁超过10次之后，手机就会暂时锁定。
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-b05f922dad99a20d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160815_10.png"></p>
+<pre><code>   安全防护，首先通过表征算法进行保证，其次通过内部安全审核，最后通过第三方对代码进行审核。
+* 沙盒系统
+   * iOS沙盒系统，为了保护两个app之间的的访问都有提醒，用户明确授权访问，用户可主动控制权限。
+* 代码签名
+  * iOS中每个app 都会进行代码签名。代码签名使用范围在iOS系统中都有涉及。
+*TouchID 对保护用户数据起到至关重要
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-0b23aea4fb7cd52a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160815_12.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-ea6ad75c63db60ed.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160815_13.png"></p>
+<pre><code>* 软件更新 
+  * iOS9之后，软件更新提醒更加醒目，并且会定期提醒，目前iOS9的占有率保持到84%
+</code></pre>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-20a071e3ec902c57.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160815_14.png"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-447defcac1c4ef37.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160815_15.png"></p>
+<ul>
+<li>开发者对app负责<ul>
+<li>请使用TouchID API</li>
+<li>请使用App Transport Security（2016年底强制使用）</li>
+<li>保持对第三方代码的审查，以及及时更新地三方库</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/08/19/20160819/" rel="prev" title="WWDC16 What’s New in Accessibility">
+      <i class="fa fa-chevron-left"></i> WWDC16 What’s New in Accessibility
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/09/02/20160902/" rel="next" title="WWDC16 Engineering Privacy for Your Users">
+      WWDC16 Engineering Privacy for Your Users <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#iOS%E5%B9%B3%E5%8F%B0%E8%87%AA%E5%B8%A6%E5%AE%89%E5%85%A8%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.</span> <span class="nav-text">iOS平台自带安全系统</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="neal"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">neal</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:nealsherlock@gmail.com" title="E-Mail → mailto:nealsherlock@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">neal</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

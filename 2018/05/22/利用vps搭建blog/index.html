@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nealwangzi.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="闲置的vps，正好能排上用场。今天就尝试搭建自己的博客。记录下生活点滴也好。 前言之前一直想搭建blog，最近有点时间。正好有vps闲置，就购买了域名，来建个博客。 根据网上的攻略，一步步走下来，还是蛮开心的。hexo的页面风格令人眼前一亮。 大致流程 1.本地生成静态文件 2.部署本地文件到服务器vps 3.使用Nginx做web服务 4.通过hexo直接进行git部署 5.即时更新博客，方便快">
+<meta property="og:type" content="article">
+<meta property="og:title" content="利用vps搭建blog">
+<meta property="og:url" content="https://nealwangzi.github.io/2018/05/22/%E5%88%A9%E7%94%A8vps%E6%90%AD%E5%BB%BAblog/index.html">
+<meta property="og:site_name" content="安东尼的博客">
+<meta property="og:description" content="闲置的vps，正好能排上用场。今天就尝试搭建自己的博客。记录下生活点滴也好。 前言之前一直想搭建blog，最近有点时间。正好有vps闲置，就购买了域名，来建个博客。 根据网上的攻略，一步步走下来，还是蛮开心的。hexo的页面风格令人眼前一亮。 大致流程 1.本地生成静态文件 2.部署本地文件到服务器vps 3.使用Nginx做web服务 4.通过hexo直接进行git部署 5.即时更新博客，方便快">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-05-22T10:50:00.000Z">
+<meta property="article:modified_time" content="2018-05-22T12:21:26.000Z">
+<meta property="article:author" content="neal">
+<meta property="article:tag" content="vps">
+<meta property="article:tag" content="blog">
+<meta property="article:tag" content="博客">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://nealwangzi.github.io/2018/05/22/%E5%88%A9%E7%94%A8vps%E6%90%AD%E5%BB%BAblog/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>利用vps搭建blog | 安东尼的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">安东尼的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2018/05/22/%E5%88%A9%E7%94%A8vps%E6%90%AD%E5%BB%BAblog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          利用vps搭建blog
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2018-05-22 18:50:00 / 修改时间：20:21:26" itemprop="dateCreated datePublished" datetime="2018-05-22T18:50:00+08:00">2018-05-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>闲置的vps，正好能排上用场。今天就尝试搭建自己的博客。记录下生活点滴也好。</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前一直想搭建blog，最近有点时间。正好有vps闲置，就购买了域名，来建个博客。</p>
+<p>根据网上的攻略，一步步走下来，还是蛮开心的。hexo的页面风格令人眼前一亮。</p>
+<h3 id="大致流程"><a href="#大致流程" class="headerlink" title="大致流程"></a>大致流程</h3><ul>
+<li>1.本地生成静态文件</li>
+<li>2.部署本地文件到服务器vps</li>
+<li>3.使用Nginx做web服务</li>
+<li>4.通过hexo直接进行git部署</li>
+<li>5.即时更新博客，方便快捷</li>
+</ul>
+<h3 id="本地配置（Mac为例）"><a href="#本地配置（Mac为例）" class="headerlink" title="本地配置（Mac为例）"></a>本地配置（Mac为例）</h3><ul>
+<li><p>1.node.js 安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.git 安装<br>Mac：使用 Homebrew, MacPorts ：brew install git;或下载 安装程序 安装。<br>Mac如装有Xcode ，自带git。<br>git进行简单的全局配置。设置邮箱和用户名。最后生成ssh密钥。<br>记得拷贝id_rsa.pub 公钥</p>
+</li>
+<li><p>3.在本地根目录建立blog根目录</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">mkdir</span> blog <span class="comment"># blog 根目录文件名</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>4.hexo 安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br><span class="line">hexo d -<span class="built_in">fg</span></span><br><span class="line">hexo serve</span><br></pre></td></tr></table></figure></li>
+<li><p>5.预览<br>打开 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 即可看到你的站点</p>
+</li>
+<li><p>6.在服务器配置成功后，配置hexo<br>位于<em>hexo</em>文件夹下, <em>_config.yml</em> ,修改 <em>deploy</em> 选项</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: git@vps的ip地址或域名:hexo.git</span><br><span class="line">branch: master</span><br><span class="line">message: update</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>7.生成blog</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd blog </span><br><span class="line">hexo g </span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>一切正常就推送成功了！<br>至此，博客搭建完成。</p>
+</li>
+<li><p>8.更新博客（待完善）</p>
+</li>
+</ul>
+<h3 id="服务器配置（Ubuntu为例）"><a href="#服务器配置（Ubuntu为例）" class="headerlink" title="服务器配置（Ubuntu为例）"></a>服务器配置（Ubuntu为例）</h3><p>1.Nginx安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>启动Nginx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/nginx start</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2.git 安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install git </span><br></pre></td></tr></table></figure>
+<p>安装完成，确认安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+
+<p>3.新建git用户 添加权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adduser git</span><br><span class="line">chmod 740 /etc/sudoers</span><br><span class="line">vim /etc/sudoers</span><br></pre></td></tr></table></figure>
+<p>编辑页面中找到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># User privilege specification</span><br><span class="line">root    ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
+<p>添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git   ALL=(ALL)     ALL</span><br></pre></td></tr></table></figure>
+<p>保存并退出后</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 440 /etc/sudoers</span><br></pre></td></tr></table></figure>
+<p>创建Git仓库，配置ssh登陆（authorized_keys    &#x2F;&#x2F;在这个文件中粘贴进刚刚申请的key（在id_rsa.pub文件中））</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">su git</span><br><span class="line">cd ~</span><br><span class="line">mkdir .ssh &amp;&amp; cd .ssh</span><br><span class="line">touch authorized_keys</span><br><span class="line">vi authorized_keys </span><br><span class="line">cd ~ </span><br><span class="line">mkdir hexo.git &amp;&amp; cd hexo.git</span><br><span class="line">git init --bare</span><br></pre></td></tr></table></figure>
+<p>测试一下，如果在本地 <em><mark>shell</mark></em> 中输入 <em><mark>ssh git@VPS的IP地址</mark></em>,能够远程登录的话，则表示设置成功了。</p>
+<p>4.创建blog目录，并给与git网站所有权</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /var/www</span><br><span class="line">mkdir hexo</span><br><span class="line">chown git:git -R /var/www/hexo</span><br></pre></td></tr></table></figure>
+
+<p>5.配置git hooks</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">su git</span><br><span class="line">cd /home/git/hexo.git/hooks</span><br><span class="line">vim post-receive</span><br></pre></td></tr></table></figure>
+<p>加入以下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">GIT_REPO=/home/git/hexo.git #git仓库</span><br><span class="line">TMP_GIT_CLONE=/tmp/hexo</span><br><span class="line">PUBLIC_WWW=/var/www/hexo #网站目录</span><br><span class="line">rm -rf $&#123;TMP_GIT_CLONE&#125;</span><br><span class="line">git clone $GIT_REPO $TMP_GIT_CLONE</span><br><span class="line">rm -rf $&#123;PUBLIC_WWW&#125;/*</span><br><span class="line">cp -rf $&#123;TMP_GIT_CLONE&#125;/* $&#123;PUBLIC_WWW&#125;</span><br></pre></td></tr></table></figure>
+<p>赋予脚本的执行权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x post-receive</span><br></pre></td></tr></table></figure>
+
+<p>6.配置Nginx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/conf.d/hexo.conf</span><br><span class="line"></span><br><span class="line">插入如下代码：</span><br><span class="line">server &#123;</span><br><span class="line">listen         80 ;</span><br><span class="line">root /var/www/hexo;</span><br><span class="line">server_name example.com www.example.com;//注意：这里输入你的域名或IP地址</span><br><span class="line">access_log  /var/log/nginx/hexo_access.log;</span><br><span class="line">error_log   /var/log/nginx/hexo_error.log;</span><br><span class="line">location ~* ^.+\.(ico|gif|jpg|jpeg|png)$ &#123;</span><br><span class="line">root /var/www/hexo;</span><br><span class="line">access_log   off;</span><br><span class="line">expires      1d;</span><br><span class="line">&#125;</span><br><span class="line">location ~* ^.+\.(css|js|txt|xml|swf|wav)$ &#123;</span><br><span class="line">root /var/www/hexo;</span><br><span class="line">access_log   off;</span><br><span class="line">expires      10m;</span><br><span class="line">&#125;</span><br><span class="line">location / &#123;</span><br><span class="line">root /var/www/hexo;</span><br><span class="line">if (-f $request_filename) &#123;</span><br><span class="line">rewrite ^/(.*)$  /$1 break;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>7.重启Nginx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/nginx restart</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>1.<a target="_blank" rel="noopener" href="https://tiktoking.github.io/2016/01/26/hexo/">https://tiktoking.github.io/2016/01/26/hexo/</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vps/" rel="tag"># vps</a>
+              <a href="/tags/blog/" rel="tag"># blog</a>
+              <a href="/tags/%E5%8D%9A%E5%AE%A2/" rel="tag"># 博客</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/12/22/2017%E5%85%B3%E8%A5%BF%E8%87%AA%E7%94%B1%E8%A1%8C/" rel="prev" title="2017关西自由行">
+      <i class="fa fa-chevron-left"></i> 2017关西自由行
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/05/23/20180417/" rel="next" title="18年东京周边之旅">
+      18年东京周边之旅 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%A7%E8%87%B4%E6%B5%81%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">大致流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E9%85%8D%E7%BD%AE%EF%BC%88Mac%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">本地配置（Mac为例）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE%EF%BC%88Ubuntu%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">服务器配置（Ubuntu为例）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-number">5.</span> <span class="nav-text">参考</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="neal"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">neal</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:nealsherlock@gmail.com" title="E-Mail → mailto:nealsherlock@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">neal</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

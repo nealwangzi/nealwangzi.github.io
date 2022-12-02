@@ -2,11 +2,9 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.2.0">
-
-
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
   <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
@@ -14,14 +12,15 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha256-DfWjNxDkM94fVBWx1H5BMMp0Zq7luBlV8QRcSES7s+0=" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nealwangzi.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"nealwangzi.github.io","root":"/","images":"/images","scheme":"Pisces","darkmode":true,"version":"8.12.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
-
-    <meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="安东尼的博客">
 <meta property="og:url" content="https://nealwangzi.github.io/index.html">
 <meta property="og:site_name" content="安东尼的博客">
@@ -30,46 +29,72 @@
 <meta property="article:tag" content="日常,分享">
 <meta name="twitter:card" content="summary">
 
-
 <link rel="canonical" href="https://nealwangzi.github.io/">
 
 
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
-
-<script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>安东尼的博客</title>
+  <title>安东尼的博客</title>
   
 
 
 
 
 
+
   <noscript>
-    <link rel="stylesheet" href="/css/noscript.css">
-  </noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
-  <div class="headband"></div>
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
 
-  <main class="main">
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
   <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏" role="button">
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
-        <span class="toggle-line"></span>
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
   </div>
 
   <div class="site-meta">
 
     <a href="/" class="brand" rel="start">
-      <i class="logo-line"></i>
+      <span class="logo-line-before"><i></i></span>
       <h1 class="site-title">安东尼的博客</h1>
-      <i class="logo-line"></i>
+      <span class="logo-line-after"><i></i></span>
     </a>
   </div>
 
@@ -81,8 +106,24 @@
 
 
 
+
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
   </ul>
 </nav>
 
@@ -90,120 +131,54 @@
 
 
 </div>
-        
-  
-  <div class="toggle sidebar-toggle" role="button">
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-    <span class="toggle-line"></span>
-  </div>
-
-  <aside class="sidebar">
-
-    <div class="sidebar-inner sidebar-overview-active">
-      <ul class="sidebar-nav">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <div class="sidebar-panel-container">
-        <!--noindex-->
-        <div class="post-toc-wrap sidebar-panel">
-        </div>
-        <!--/noindex-->
-
-        <div class="site-overview-wrap sidebar-panel">
-          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">neal</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap site-overview-item animated">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-        <a href="/archives/">
-          <span class="site-state-item-count">1</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author site-overview-item animated">
-      <span class="links-of-author-item">
-        <a href="mailto:nealsherlock@gmail.com" title="E-Mail → mailto:nealsherlock@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
-      </span>
-  </div>
-
-
-
-        </div>
-      </div>
-    </div>
-  </aside>
-  <div class="sidebar-dimmer"></div>
-
-
     </header>
 
     
-  <div class="back-to-top" role="button" aria-label="返回顶部">
+  <div class="back-to-top">
     <i class="fa fa-arrow-up"></i>
     <span>0%</span>
   </div>
-  <div class="reading-progress-bar"></div>
-
-<noscript>
-  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
-</noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
 
-    
-
-
-<div class="post-block">
+          <div class="content index posts-expand">
+            
+      
   
   
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2022/07/29/hello-world/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2022/11/28/Java-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/images/avatar.jpeg">
       <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="安东尼的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 安东尼的博客">
-      <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/07/29/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+          
+            <a href="/2022/11/28/Java-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" class="post-title-link" itemprop="url">Java 面试总结</a>
         </h2>
 
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2022-07-29 14:43:47" itemprop="dateCreated datePublished" datetime="2022-07-29T14:43:47+08:00">2022-07-29</time>
-    </span>
+              <time title="创建时间：2022-11-28 17:25:06" itemprop="dateCreated datePublished" datetime="2022-11-28T17:25:06+08:00">2022-11-28</time>
+            </span>
 
-  
-</div>
+          
 
         </div>
       </header>
@@ -212,19 +187,218 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+      
+          
+      
+    </div>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2022/05/02/Oracle%E8%A1%A8%E5%AD%97%E6%AE%B5%20%E5%A2%9E%E5%8A%A0%20%E5%88%A0%E9%99%A4%20%E4%BF%AE%E6%94%B9%20%E9%87%8D%E5%91%BD%E5%90%8D/">
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/05/02/Oracle%E8%A1%A8%E5%AD%97%E6%AE%B5%20%E5%A2%9E%E5%8A%A0%20%E5%88%A0%E9%99%A4%20%E4%BF%AE%E6%94%B9%20%E9%87%8D%E5%91%BD%E5%90%8D/" class="post-title-link" itemprop="url">Oracle表字段</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-02 21:09:07" itemprop="dateCreated datePublished" datetime="2022-05-02T21:09:07+08:00">2022-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-29 12:01:45" itemprop="dateModified" datetime="2022-11-29T12:01:45+08:00">2022-11-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Oracle表字段-增加-删除-修改-重命名"><a href="#Oracle表字段-增加-删除-修改-重命名" class="headerlink" title="Oracle表字段 增加 删除 修改 重命名"></a>Oracle表字段 增加 删除 修改 重命名</h2><ul>
+<li><p>增加</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tablename <span class="keyword">add</span> (<span class="keyword">column</span> datatype [<span class="keyword">default</span> <span class="keyword">value</span>] [<span class="keyword">null</span><span class="operator">/</span><span class="keyword">not</span> <span class="keyword">null</span>],...);</span><br></pre></td></tr></table></figure>
+
+<p>说明：alter table 表名 add（字段名 字段类型 默认值 是否为空）;</p>
+<p>例子：alter table user add column name；</p>
+</li>
+<li><p>修改</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> CF_RECOGSTEP (ID, LEGAL_ORG_CODE, RECOGSTEP_NAME, CHANNEL, TRADING_CODE, STEPGROUP_ID, STATUS, REMARK, CREATOR, CREATE_TIME, UPDATOR, UPDATE_TIME) <span class="keyword">VALUES</span> (<span class="string">&#x27;1055&#x27;</span>, <span class="string">&#x27;0000&#x27;</span>, <span class="string">&#x27;行驶证OCR+迎宾(行驶证OCR)&#x27;</span>, <span class="string">&#x27;0309&#x27;</span>, <span class="string">&#x27;0620&#x27;</span>, <span class="string">&#x27;1007&#x27;</span>, <span class="number">1</span>, <span class="string">&#x27;行驶证OCR+迎宾&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="type">TIMESTAMP</span> <span class="string">&#x27;2020-02-20 19:17:08&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="type">TIMESTAMP</span> <span class="string">&#x27;2020-02-20 19:17:08&#x27;</span>);</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tablename modify (<span class="keyword">column</span> datatype [dafult <span class="keyword">value</span>][<span class="keyword">null</span><span class="operator">/</span><span class="keyword">not</span> <span class="keyword">null</span>],...)</span><br></pre></td></tr></table></figure>
+
+<p>说明：alter table 表名 modify （字段名 字段类型 默认值 是否为空）；</p>
+<p>例子：alter table user modify name varchar(64);</p>
+</li>
+<li><p>删除</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tablename <span class="keyword">drop</span> (<span class="keyword">column</span>);</span><br></pre></td></tr></table></figure>
+
+<p>说明：alter table 表名 drop column 字段名；</p>
+<p>例子：alter table user drop column name;</p>
+</li>
+<li><p>重命名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> tablename rename <span class="keyword">column</span> 列名 <span class="keyword">to</span> 新列名;</span><br></pre></td></tr></table></figure>
+
+<p>说明：alter table 表名 rename column 列名 to 新列名；</p>
+<p>例子：alter table user rename column name to  nickname；</p>
+</li>
+<li><p>表的重命名</p>
+<p>说明：alter table 表名 rename to 新表名</p>
+<p>例子：alter table user rename to new_name;</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/05/02/Oracle%E8%A1%A8%E5%AD%97%E6%AE%B5%20%E5%A2%9E%E5%8A%A0%20%E5%88%A0%E9%99%A4%20%E4%BF%AE%E6%94%B9%20%E9%87%8D%E5%91%BD%E5%90%8D/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2021/05/02/kafka%20%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/05/02/kafka%20%E5%AE%89%E8%A3%85/" class="post-title-link" itemprop="url">kafka安装</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-05-02 11:09:07" itemprop="dateCreated datePublished" datetime="2021-05-02T11:09:07+08:00">2021-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-29 11:55:42" itemprop="dateModified" datetime="2022-11-29T11:55:42+08:00">2022-11-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p> </p>
+<p>kafka的下载地址：<a target="_blank" rel="noopener" href="https://kafka.apache.org/downloads">https://kafka.apache.org/downloads</a></p>
+<p><img src="https://img-blog.csdnimg.cn/e499d988dbed4c0fab9161c008c297d7.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBA6I-v5bCP54G8,size_20,color_FFFFFF,t_70,g_se,x_16" alt="img"></p>
+<p>  注意：kafka的 producer 和 consumer 使用Java语言开发的，而broker是用Scala语言开发的，而上图中在kafka3.1.0版本下的两个地址中，另一个版本是Scala的版本。例如 kafka_2.12-3.1.0 代表 kafka版本3.1.0，Scala版本2.12<br>  从2.8.0版本开始，kafka可以不用在配置Zookeeper组件了，但是在这之前的版本还是得需要Zookeeper的</p>
+<p>  本次安装基于kafka3.1.0版本，操作系统使用centos7，Java版1.8</p>
+<ol>
+<li>下载解压kafka</li>
+</ol>
+<p>wget <a target="_blank" rel="noopener" href="https://dlcdn.apache.org/kafka/3.1.0/kafka_2.12-3.1.0.tgz">https://dlcdn.apache.org/kafka/3.1.0/kafka_2.12-3.1.0.tgz</a><br>tar -zxvf kafka_2.12-3.1.0.tgz</p>
+<ol start="2">
+<li>配置 kafka<br>  在kafka的config目录，kafka的主要配置文件是server.properties</li>
+</ol>
+<h1 id="对于每个代理，必须将其设置为唯一的整数，特别是集群时不能重复"><a href="#对于每个代理，必须将其设置为唯一的整数，特别是集群时不能重复" class="headerlink" title="对于每个代理，必须将其设置为唯一的整数，特别是集群时不能重复"></a>对于每个代理，必须将其设置为唯一的整数，特别是集群时不能重复</h1><p># 对于每个代理，必须将其设置为唯一的整数，特别是集群时不能重复</p>
+<p>broker.id&#x3D;0</p>
+<h1 id="如果需要远程连接，需要配置此参数"><a href="#如果需要远程连接，需要配置此参数" class="headerlink" title="如果需要远程连接，需要配置此参数"></a>如果需要远程连接，需要配置此参数</h1><p># 如果需要远程连接，需要配置此参数</p>
+<p>advertised.listeners&#x3D;PLAINTEXT:&#x2F;&#x2F;192.168.0.124:9092</p>
+<h1 id="日志文件存储路径"><a href="#日志文件存储路径" class="headerlink" title="日志文件存储路径"></a>日志文件存储路径</h1><p># 日志文件存储路径</p>
+<p>log.dirs&#x3D;&#x2F;home&#x2F;kafka&#x2F;log</p>
+<h1 id="zookeeper-地址，如果是zookeeper是集群，用逗号进行隔开配置"><a href="#zookeeper-地址，如果是zookeeper是集群，用逗号进行隔开配置" class="headerlink" title="zookeeper 地址，如果是zookeeper是集群，用逗号进行隔开配置"></a>zookeeper 地址，如果是zookeeper是集群，用逗号进行隔开配置</h1><p># zookeeper 地址，如果是zookeeper是集群，用逗号进行隔开配置</p>
+<p>zookeeper.connect&#x3D;localhost:2181</p>
+<ol start="3">
+<li>配置zookeeper</li>
+</ol>
+<h1 id="数据存放路径"><a href="#数据存放路径" class="headerlink" title="数据存放路径"></a>数据存放路径</h1><p>dataDir&#x3D;&#x2F;home&#x2F;zookeeper</p>
+<ol start="4">
+<li>配置kafka的环境变量</li>
+</ol>
+<h1 id="在-x2F-etc-x2F-profile-d目录创建kafka的环境变量文件进行配置"><a href="#在-x2F-etc-x2F-profile-d目录创建kafka的环境变量文件进行配置" class="headerlink" title="在&#x2F;etc&#x2F;profile.d目录创建kafka的环境变量文件进行配置"></a>在&#x2F;etc&#x2F;profile.d目录创建kafka的环境变量文件进行配置</h1><p>vim &#x2F;etc&#x2F;profile.d&#x2F;kafka.sh</p>
+<h1 id="在kafka的环境变量文件中配置以下参数，注意更换为自己的路径"><a href="#在kafka的环境变量文件中配置以下参数，注意更换为自己的路径" class="headerlink" title="在kafka的环境变量文件中配置以下参数，注意更换为自己的路径"></a>在kafka的环境变量文件中配置以下参数，注意更换为自己的路径</h1><p>export KAFKA_HOME&#x3D;&#x2F;home&#x2F;kafka<br>export PATH&#x3D;$PATH:$KAFKA_HOME&#x2F;bin</p>
+<h1 id="执行source"><a href="#执行source" class="headerlink" title="执行source"></a>执行source</h1><p>source &#x2F;etc&#x2F;profile.d&#x2F;kafka.sh</p>
+<ol start="5">
+<li>启动zookeeper<br>  kafka的压缩包已经包含了zookeeper和所有的启动脚本，并支持Windows</li>
+</ol>
+<p>  
+  </p>
+<h1 id="启动-zookeeper"><a href="#启动-zookeeper" class="headerlink" title="启动 zookeeper"></a>启动 zookeeper</h1><h1 id="daemon-后台启动"><a href="#daemon-后台启动" class="headerlink" title="-daemon 后台启动"></a>-daemon 后台启动</h1><h1 id="zookeeper-properties-指定启动的配置"><a href="#zookeeper-properties-指定启动的配置" class="headerlink" title="zookeeper.properties 指定启动的配置"></a>zookeeper.properties 指定启动的配置</h1><p>sh .&#x2F;zookeeper-server-start.sh -daemon ..&#x2F;config&#x2F;zookeeper.properties</p>
+<h1 id="查看zookeeper是否启动"><a href="#查看zookeeper是否启动" class="headerlink" title="查看zookeeper是否启动"></a>查看zookeeper是否启动</h1><p>ps -ef | grep zookeeper</p>
+<ol start="6">
+<li>启动kafka</li>
+</ol>
+<h1 id="启动-kafka"><a href="#启动-kafka" class="headerlink" title="启动 kafka"></a>启动 kafka</h1><h1 id="daemon-后台启动-1"><a href="#daemon-后台启动-1" class="headerlink" title="-daemon 后台启动"></a>-daemon 后台启动</h1><h1 id="server-properties-指定启动的配置"><a href="#server-properties-指定启动的配置" class="headerlink" title="server.properties 指定启动的配置"></a>server.properties 指定启动的配置</h1><p>sh .&#x2F;kafka-server-start.sh -daemon &#x2F;home&#x2F;kafka&#x2F;config&#x2F;server.properties</p>
+<h1 id="查看kafka是否启动"><a href="#查看kafka是否启动" class="headerlink" title="查看kafka是否启动"></a>查看kafka是否启动</h1><p>ps -ef | grep kafka</p>
+<p>  上面是手动启动，我们也可以通过脚本进行一键启动</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">case $1 in </span><br><span class="line">&quot;start&quot;)</span><br><span class="line">	echo &quot;----启动kafka和zookeeper----&quot;</span><br><span class="line">	/home/kafka/bin/zookeeper-server-start.sh -daemon /home/kafka/config/zookeeper.properties</span><br><span class="line">	/home/kafka/bin/kafka-server-start.sh -daemon /home/kafka/config/server.properties</span><br><span class="line">;;</span><br><span class="line">&quot;stop&quot;)</span><br><span class="line">	echo &quot;----停止kafka和zookeeper----&quot;</span><br><span class="line">	/home/kafka/bin/kafka-server-stop.sh</span><br><span class="line">	/home/kafka/bin/zookeeper-server-stop.sh</span><br><span class="line">;;</span><br><span class="line">esac</span><br></pre></td></tr></table></figure>
+
+
+<p>  注意，在停止kafka之前必须先停止zookeeper</p>
 
       
     </div>
@@ -232,56 +406,952 @@
     
     
     
-
-    <footer class="post-footer">
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
+      </footer>
   </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2020/11/28/Oracle%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/28/Oracle%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Oracle使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-11-28 17:45:09" itemprop="dateCreated datePublished" datetime="2020-11-28T17:45:09+08:00">2020-11-28</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-29 12:01:46" itemprop="dateModified" datetime="2022-11-29T12:01:46+08:00">2022-11-29</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <span id="more"></span>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2020/05/02/nginx%20%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/05/02/nginx%20%E5%AE%89%E8%A3%85/" class="post-title-link" itemprop="url">nginx 安装</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-02 21:09:07" itemprop="dateCreated datePublished" datetime="2020-05-02T21:09:07+08:00">2020-05-02</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-28 17:50:41" itemprop="dateModified" datetime="2022-11-28T17:50:41+08:00">2022-11-28</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="nginx-安装"><a href="#nginx-安装" class="headerlink" title="nginx 安装"></a>nginx 安装</h1><p>一：安装基础工具：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">yum -y install make zlib zlib-devel gcc-c++ libtool  openssl openssl-devel</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>二：安装 Nginx  </p>
+</li>
+<li><p>地址：<a target="_blank" rel="noopener" href="http://nginx.org/en/download.html">http://nginx.org/en/download.html</a></p>
+</li>
+<li><p>查找需要的版本，这里以1.16.1 为例</p>
+<p>wget <a target="_blank" rel="noopener" href="https://nginx.org/download/nginx-1.16.1.tar.gz">https://nginx.org/download/nginx-1.16.1.tar.gz</a></p>
+<p>解压：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">tar -zxvf nginx-1.16.1.tar.gz</span><br><span class="line">cd nginx-1.16.1</span><br><span class="line">./configure</span><br><span class="line"> </span><br><span class="line">make</span><br><span class="line">make install</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>启动nginx<br> &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;nginx -c &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;conf&#x2F;nginx.conf  (最安全的启动方式）<br> 或者<br> cd &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin&#x2F;<br>.&#x2F;nginx<br>.&#x2F;nginx -s stop  # 此方式相当于先查出nginx进程id再使用kill命令强制杀掉进程。<br>.&#x2F;nginx -s quit   # 此方式停止步骤是待nginx进程处理任务完毕进行停止。<br>.&#x2F;nginx -s reload  #启动</p>
+<p> 重启Nginx （cd  &#x2F;usr&#x2F;local&#x2F;nginx&#x2F;sbin)<br> .&#x2F;nginx -s quit  </p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2018/07/31/20170731/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/07/31/20170731/" class="post-title-link" itemprop="url">iOS 打包相关导出问题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2018-07-31 16:04:47 / 修改时间：16:06:02" itemprop="dateCreated datePublished" datetime="2018-07-31T16:04:47+08:00">2018-07-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Xcode9-自动化打包-导出问题"><a href="#Xcode9-自动化打包-导出问题" class="headerlink" title="Xcode9 自动化打包 导出问题"></a>Xcode9 自动化打包 导出问题</h2><hr>
+<p>一直使用 Jinkens 打包工具打包。最近打包失败。总结下问题。主要用于记录。</p>
+<p>最近打包都是在卡在了 从 .xcarchive 到 .ipa 的过程中。 那先了解下，打包的命令行吧</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">xcodebuild -exportArchive -archivePath $&#123;ARCHIVE_PATH&#125; \</span><br><span class="line">-exportPath $&#123;EXPORT_PATH&#125; \</span><br><span class="line">-exportOptionsPlist $&#123;EXPORT_OPTIONS_PLIST_PATH&#125;.plist</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>xcodebuild 官方自带的命令，这个都很熟悉。主要在于 export.plist 的文件。</p>
+<h4 id="Xcode9-之前"><a href="#Xcode9-之前" class="headerlink" title="Xcode9 之前"></a>Xcode9 之前</h4><p>最少需要用一个关键词 method ：<strong>app-store</strong>, <strong>ad-hoc</strong>, <strong>enterprise</strong> 或者 <strong>development</strong>。</p>
+<p>简单的 .plist 如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span><br><span class="line">&lt;plist version=&quot;1.0&quot;&gt;</span><br><span class="line">&lt;dict&gt;</span><br><span class="line">&lt;key&gt;method&lt;/key&gt;</span><br><span class="line">&lt;string&gt;enterprise&lt;/string&gt;</span><br><span class="line">&lt;/dict&gt;</span><br><span class="line">&lt;/plist&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Xcode9-之后"><a href="#Xcode9-之后" class="headerlink" title="Xcode9 之后"></a>Xcode9 之后</h3><p>上面简单的 .plist 已经不再适用。必要的是 1，2</p>
+<h4 id="1-compileBitcode-的设置，默认是-true-。由于第三方库等原因，无法开启的请设置为-false-。"><a href="#1-compileBitcode-的设置，默认是-true-。由于第三方库等原因，无法开启的请设置为-false-。" class="headerlink" title="1. compileBitcode 的设置，默认是 true 。由于第三方库等原因，无法开启的请设置为 false 。"></a>1. compileBitcode 的设置，默认是 true 。由于第三方库等原因，无法开启的请设置为 false 。</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span><br><span class="line">&lt;plist version=&quot;1.0&quot;&gt;</span><br><span class="line">&lt;dict&gt;</span><br><span class="line">&lt;key&gt;compileBitcode&lt;/key&gt;</span><br><span class="line">&lt;false/&gt;</span><br><span class="line">&lt;key&gt;method&lt;/key&gt;</span><br><span class="line">&lt;string&gt;enterprise&lt;/string&gt;</span><br><span class="line">&lt;/dict&gt;</span><br><span class="line">&lt;/plist&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-provisioning-需要提供描述文件名称和信息"><a href="#2-provisioning-需要提供描述文件名称和信息" class="headerlink" title="2. provisioning 需要提供描述文件名称和信息"></a>2. provisioning 需要提供描述文件名称和信息</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span><br><span class="line">&lt;plist version=&quot;1.0&quot;&gt;</span><br><span class="line">&lt;dict&gt;</span><br><span class="line">&lt;key&gt;compileBitcode&lt;/key&gt;</span><br><span class="line">&lt;false/&gt;</span><br><span class="line">&lt;key&gt;method&lt;/key&gt;</span><br><span class="line">&lt;string&gt;enterprise&lt;/string&gt;</span><br><span class="line">&lt;key&gt;provisioningProfiles&lt;/key&gt;</span><br><span class="line">&lt;dict&gt;</span><br><span class="line">&lt;key&gt;your.bundle.identifier&lt;/key&gt;</span><br><span class="line">&lt;string&gt;Provisioning profile name&lt;/string&gt;</span><br><span class="line">&lt;/dict&gt;</span><br><span class="line">&lt;/dict&gt;</span><br><span class="line">&lt;/plist&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-最终通过一份完整的配置-plist-文件如下。可以通过-Xcode9-Archive-导出时得到"><a href="#3-最终通过一份完整的配置-plist-文件如下。可以通过-Xcode9-Archive-导出时得到" class="headerlink" title="3.最终通过一份完整的配置 plist 文件如下。可以通过 Xcode9 Archive 导出时得到"></a>3.最终通过一份完整的配置 plist 文件如下。可以通过 Xcode9 Archive 导出时得到</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE plist PUBLIC &quot;-//Apple//DTD PLIST 1.0//EN&quot; &quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;&gt;</span><br><span class="line">&lt;plist version=&quot;1.0&quot;&gt;</span><br><span class="line">&lt;dict&gt;</span><br><span class="line">&lt;key&gt;compileBitcode&lt;/key&gt;</span><br><span class="line">&lt;true/&gt;</span><br><span class="line">&lt;key&gt;method&lt;/key&gt;</span><br><span class="line">&lt;string&gt;development&lt;/string&gt;</span><br><span class="line">&lt;key&gt;provisioningProfiles&lt;/key&gt;</span><br><span class="line">&lt;dict&gt;</span><br><span class="line">&lt;key&gt;your bundle id&lt;/key&gt;</span><br><span class="line">&lt;string&gt;Provisioning profile name&lt;/string&gt;</span><br><span class="line">&lt;/dict&gt;</span><br><span class="line">&lt;key&gt;signingCertificate&lt;/key&gt;</span><br><span class="line">&lt;string&gt;iPhone Developer&lt;/string&gt;</span><br><span class="line">&lt;key&gt;signingStyle&lt;/key&gt;</span><br><span class="line">&lt;string&gt;manual&lt;/string&gt;</span><br><span class="line">&lt;key&gt;stripSwiftSymbols&lt;/key&gt;</span><br><span class="line">&lt;true/&gt;</span><br><span class="line">&lt;key&gt;teamID&lt;/key&gt;</span><br><span class="line">&lt;string&gt;team id&lt;/string&gt;</span><br><span class="line">&lt;key&gt;thinning&lt;/key&gt;</span><br><span class="line">&lt;string&gt;&amp;lt;none&amp;gt;&lt;/string&gt;</span><br><span class="line">&lt;/dict&gt;</span><br><span class="line">&lt;/plist&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2018/06/06/20180606/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/06/06/20180606/" class="post-title-link" itemprop="url">理解和分析 APP Crash Reports</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2018-06-06 14:52:35 / 修改时间：14:56:24" itemprop="dateCreated datePublished" datetime="2018-06-06T14:52:35+08:00">2018-06-06</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>当 APP 发生崩溃时，会创建一个 crash report。这样就可以比较方便的去了解奔溃原因，并尝试修复。</p>
+<p>获取崩溃和低内存报告<br>调试部署iOS应用程序 中介绍了如何直接从 iOS 设备获取崩溃和内存不足</p>
+<p>在应用程序分发指南中的分析崩溃日志讨论了怎么从 TestFlight Beta 测试者和已经在 App Store 下载应用的用户那里手机崩溃报告。</p>
+<h3 id="symbolicating-崩溃日志"><a href="#symbolicating-崩溃日志" class="headerlink" title="symbolicating 崩溃日志"></a>symbolicating 崩溃日志</h3><p>symbolication 是解决回溯地址的源代码的方法和函数名，简称符号化。</p>
+<p>低内存报告不需要 symbolicated<br>macOS 的崩溃日志已经自动符号化<br>下图概述了崩溃报告和符号化的过程<br><img src="https://developer.apple.com/library/archive/technotes/tn2151/Art/tn2151_crash_flow.png" alt="symbolication image"></p>
+<p>1.编译器将源代码翻译为机器代码，生成调试符号，将编译后的二进制中的机器指定映射到源代码的行源代码中。根据 debug_information_format 编译设置，将其存储在 dsym 文件中。debug 版本中 dsym 文件存储在编译后的二进制中，release 版本 会存储在相应的 dsym 中 以减少包大小。</p>
+<p>dysm 文件和包文件与每个 build 生成的 uuid 相互绑定。</p>
+<p>2.当进行 archive 要分发的应用程序，Xcode 会收集应用程序二进制的 .dysm 文件 ，并存放于 home 文件中。可以参考应用程序分发指南</p>
+<ul>
+<li>重要：为了可以将测试人员，审查程序和客户那得到崩溃日志，你必须保留应用程序的每个存档。</li>
+</ul>
+<p>3.如果你是通过 App Store 发布应用程序，或者 testfight 进行测试，你将选择包括 dysm 文件到 iTunes Connect。在提交时，需要选择 “Include app symbols for your application…”,以便获取错误日志信息。可以参考应用程序分发指南</p>
+<ul>
+<li>重要：从 app review 收到的崩溃报告将是 unsymbolicated，即使你有上传 dsym 文件到 iTunes Connect。<br>你需要使用 Xcode 来 symbolicate 任何从 app review 得到的崩溃报告。<br>看下文中”到symbolicating崩溃报告Xcode“。<br>4.当你的应用程序崩溃时，一个 unsymbolicated 崩溃报告会被创建并存储在设备上。</li>
+</ul>
+<p>5.用户可以按照调试iOS应用程序，直接查看崩溃日志。</p>
+<p>6.利用 Xcode 对未符号化的日志，进行符号化。<br>7.如果用户选择了分享诊断数据，或者用户是通过 TestFlight 安装的，崩溃日志会上传到 App Store。</p>
+<p>8.App Store 符号化崩溃报告 并且将类似的崩溃报告分组。类似的崩溃报告的集合被称为崩溃点。</p>
+<p>9.符号化的崩溃报告是在 Xcode’s Crashes organizer 提供给你的。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2018/06/01/20180601/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/06/01/20180601/" class="post-title-link" itemprop="url">swift 面试题</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-06-01 14:32:42" itemprop="dateCreated datePublished" datetime="2018-06-01T14:32:42+08:00">2018-06-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-06-06 14:49:19" itemprop="dateModified" datetime="2018-06-06T14:49:19+08:00">2018-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-class-和-struct-的区别"><a href="#1-class-和-struct-的区别" class="headerlink" title="1.class 和 struct 的区别"></a>1.class 和 struct 的区别</h3><p>class 是引用类型，struct 是值类型</p>
+<h3 id="2-不通过继承，代码复用（共享）的方式有哪些"><a href="#2-不通过继承，代码复用（共享）的方式有哪些" class="headerlink" title="2.不通过继承，代码复用（共享）的方式有哪些"></a>2.不通过继承，代码复用（共享）的方式有哪些</h3><p>extension 给已有类扩展方法</p>
+<h3 id="3-set-独有的方法有哪些"><a href="#3-set-独有的方法有哪些" class="headerlink" title="3.set 独有的方法有哪些"></a>3.set 独有的方法有哪些</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">//定义一个 set</span><br><span class="line">let setA: Set&lt;Int&gt; = [1,2,3,4,3] // &#123;2,3,1,4&#125;,顺序可能不一致，同一个元素只能有一个值</span><br><span class="line">let setB: Set&lt;Int&gt; = [1,3,5,7,9] // &#123;5,7,3,1,9&#125;</span><br><span class="line"></span><br><span class="line">//取并集 A|B</span><br><span class="line">let setUnion = setA.union(setB) // &#123;2,4,9,5,7,3,1&#125;</span><br><span class="line"></span><br><span class="line">//取交集 A&amp;B</span><br><span class="line">let setIntersect = setA.intersection(setB) // &#123;3,1&#125;</span><br><span class="line"></span><br><span class="line">//取差集 A-B</span><br><span class="line">let setRevers = setA.subtracting(setB) // &#123;2,4&#125;</span><br><span class="line"></span><br><span class="line">//取对称差集 A XOR B = A-B | B-A</span><br><span class="line">let setXor = setA.symmetricDifference(setB) // &#123;5,7,2,4,9&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-实现一个-min-函数，返回两个元素较小的元素"><a href="#4-实现一个-min-函数，返回两个元素较小的元素" class="headerlink" title="4.实现一个 min 函数，返回两个元素较小的元素"></a>4.实现一个 min 函数，返回两个元素较小的元素</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func min&lt;T : Comparable&gt;(_ a:T,_ b:T) -&gt; T &#123;</span><br><span class="line">    return a &lt; b ? a : b</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">min(1, 2)</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-map、filter、reduce-的作用"><a href="#5-map、filter、reduce-的作用" class="headerlink" title="5.map、filter、reduce 的作用"></a>5.map、filter、reduce 的作用</h3><ul>
+<li>map:映射，讲一个元素根据某个函数映射成另一个元素（类型可以不同）</li>
+<li>filter:过滤，将一个元素传入闭包中，如果返回的是false，就过滤掉</li>
+<li>reduce:先映射后融合，将数组中的所有元素映射融合一起。</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">struct Person &#123;</span><br><span class="line">    let name: String</span><br><span class="line">    let money: String</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let a = Person(name: &quot;a&quot;, money: &quot;1.99&quot;)</span><br><span class="line">let b = Person(name: &quot;b&quot;, money: &quot;7.19&quot;)</span><br><span class="line">let c = Person(name: &quot;c&quot;, money: &quot;3.22&quot;)</span><br><span class="line"></span><br><span class="line">let sumMoney = [a,b,c].reduce(0) &#123;</span><br><span class="line">    return $0 + ($1.money as NSString).doubleValue</span><br><span class="line">&#125;</span><br><span class="line">print(sumMoney)</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-map-与-flatmap-的区别"><a href="#6-map-与-flatmap-的区别" class="headerlink" title="6.map 与 flatmap 的区别"></a>6.map 与 flatmap 的区别</h3><p>map不能将元素映射成可选类型，flatmap 可以</p>
+<h3 id="7-什么是-copy-on-write"><a href="#7-什么是-copy-on-write" class="headerlink" title="7.什么是 copy on write"></a>7.什么是 copy on write</h3><p>写入时复制指swift中值类型。不会再一开始赋值的时候就去复制，只要在需要修改的时候才去复制。</p>
+<h3 id="8-如何获取当前代码的函数名和行号"><a href="#8-如何获取当前代码的函数名和行号" class="headerlink" title="8.如何获取当前代码的函数名和行号"></a>8.如何获取当前代码的函数名和行号</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#file 用于获取当前文件文件名</span><br><span class="line">#line 用于获取当前行号</span><br><span class="line">#column 用于获取当前列编号</span><br><span class="line">#function 用于获取当前函数名</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="9-如何生命一个只能被类-conform-的-protocol"><a href="#9-如何生命一个只能被类-conform-的-protocol" class="headerlink" title="9.如何生命一个只能被类 conform 的 protocol"></a>9.如何生命一个只能被类 conform 的 protocol</h3><p>声明协议的时候，加上 class 即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">protocol SomeClassProtocl: class &#123;</span><br><span class="line">    func someFunction()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="10-guard-使用场景"><a href="#10-guard-使用场景" class="headerlink" title="10. guard 使用场景"></a>10. guard 使用场景</h3><p>guard 和 if 类似，不同在于 gurad 总是有个 else 语句，如果表达式为 false,或者值绑定失败时，会执行 else 语句中一定要停止函数调用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">guard 1 + 1 == 2 else &#123;</span><br><span class="line">    fatalError(&quot;something wrong&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>主要用于 拦截，解包，不满足 guard 后面条件的都会执行下面的代码</p>
+<h3 id="11-defer-使用场景"><a href="#11-defer-使用场景" class="headerlink" title="11. defer 使用场景"></a>11. defer 使用场景</h3><p>defer 语句块中的代码，会在当前作用域结束前调用，常用场景如异常退出后，关闭数据库连接</p>
+<p>需要注意的是，如果有多个defer，那么后加入的先执行</p>
+<h3 id="12-String-与-NSString-的关系和区别"><a href="#12-String-与-NSString-的关系和区别" class="headerlink" title="12. String 与 NSString 的关系和区别"></a>12. String 与 NSString 的关系和区别</h3><p>String 是结构体，值类型; NSString 是类，引用类型<br>通常，没必要使用 NSString 类，除非有特殊方法，例如使用 pathExtension 属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">let string = &quot;1234&quot;</span><br><span class="line">let nsstring = NSString(string: &quot;n1234&quot;)</span><br><span class="line"></span><br><span class="line">let stringToNSString = string as NSString</span><br><span class="line">let nsstringToString = nsstring as String</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="13-怎么获取一个-String-的长度"><a href="#13-怎么获取一个-String-的长度" class="headerlink" title="13.怎么获取一个 String 的长度"></a>13.怎么获取一个 String 的长度</h3><p>不考虑编码，只想知道字符的数量 用 characters.count</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&quot;hello&quot;.count</span><br><span class="line">&quot;你好&quot;.count</span><br><span class="line">&quot;こんにちは&quot;.count</span><br></pre></td></tr></table></figure>
+<p>如果想知道在某个编码下占多少字节, 可以用</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&quot;hello&quot;.lengthOfBytes(using: .ascii) // 5</span><br><span class="line">&quot;hello&quot;.lengthOfBytes(using: .unicode) // 10</span><br><span class="line">&quot;你好&quot;.lengthOfBytes(using: .unicode) // 4</span><br><span class="line">&quot;你好&quot;.lengthOfBytes(using: .utf8) // 6</span><br><span class="line">&quot;こんにちは&quot;.lengthOfBytes(using: .unicode) // 10</span><br><span class="line">&quot;こんにちは&quot;.lengthOfBytes(using: .utf8) // 15</span><br></pre></td></tr></table></figure>
+
+<h3 id="14-如何截取-String-的某段字符串"><a href="#14-如何截取-String-的某段字符串" class="headerlink" title="14.如何截取 String 的某段字符串"></a>14.如何截取 String 的某段字符串</h3><p>swfit3 中，有三个取子串函数<br>substring:to ;substring:from ; substring:with 已废弃</p>
+<p>swfit4 使用下标将字符串分割子字符串</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">// 获取从指定索引到末尾子字符串</span><br><span class="line"></span><br><span class="line">let simpleString = &quot;hello, world&quot;</span><br><span class="line"></span><br><span class="line">let indexStartText = simpleString.index(simpleString.startIndex, offsetBy: 3)</span><br><span class="line"></span><br><span class="line">let indexEndText = simpleString.index(simpleString.endIndex, offsetBy: -3)</span><br><span class="line"></span><br><span class="line">let substring1 = simpleString[indexStartText...]</span><br><span class="line"></span><br><span class="line">// 获取从开头到指定索引的子字符串</span><br><span class="line"></span><br><span class="line">let substring2 = simpleString[..&lt;indexEndText]</span><br><span class="line">// 获取指定范围子字符串</span><br><span class="line">let substring3 = simpleString[indexStartText..&lt;indexEndText]</span><br><span class="line"></span><br><span class="line">// Substring 转 String</span><br><span class="line">let string1 = String(substring1)</span><br></pre></td></tr></table></figure>
+
+<h3 id="15-throws-和-rethrows-的用法与作用"><a href="#15-throws-和-rethrows-的用法与作用" class="headerlink" title="15. throws 和 rethrows 的用法与作用"></a>15. throws 和 rethrows 的用法与作用</h3><p>throws 用在函数上，表示这个函数会抛出错误<br>有两种情况，一种直接使用 throw 抛出，另一种调用其他抛出异常的函数时，直接使用try xx 没有处理异常</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">enum DivideError: Error &#123;</span><br><span class="line">    case EqualZeroError;</span><br><span class="line">&#125;</span><br><span class="line">func divide(_ a: Double, _ b : Double) throws -&gt; Double &#123;</span><br><span class="line">    guard b != Double(0) else &#123;</span><br><span class="line">        throw DivideError.EqualZeroError</span><br><span class="line">    &#125;</span><br><span class="line">    return a / b</span><br><span class="line">&#125;</span><br><span class="line">func split(pieces: Int) throws -&gt; Double &#123;</span><br><span class="line">    return try divide(1, Double(pieces))</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>rethrows 与 throws 类似，不过只适用于参数中的函数，且函数会抛出异常情况，rethrows 可以用 throws 替换，反之不行。</p>
+<h3 id="16-try-和-try！是什么意思"><a href="#16-try-和-try！是什么意思" class="headerlink" title="16.try? 和 try！是什么意思"></a>16.try? 和 try！是什么意思</h3><p>都是用于处理可抛出异常的函数，使用这两个关键词可以不用写 do catch</p>
+<p>try! 强制抛出错误，有错误就崩溃；<br>try? 抛出错误，没有错误不会崩溃直接返回</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(try? divide(2, 1)) // Optional(2.0)</span><br><span class="line"></span><br><span class="line">print(try? divide(2, 0)) // nil</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="17-associatedtype-的作用"><a href="#17-associatedtype-的作用" class="headerlink" title="17. associatedtype 的作用"></a>17. associatedtype 的作用</h3><p>简而言之是 protocol 使用的泛型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">// 定义一个列表协议</span><br><span class="line">protocol ListProtcol &#123;</span><br><span class="line">    associatedtype Element</span><br><span class="line">    func push(_ element: Element)</span><br><span class="line">    func pop(_ element: Element) -&gt; Element?</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 协议实现是，可以使用 typealias 指定为特定类型，也可以自动推导</span><br><span class="line"></span><br><span class="line">class IntList: ListProtcol &#123;</span><br><span class="line">    typealias Element = Int // 指定为 Int</span><br><span class="line">    var list = [Element]()</span><br><span class="line">    func push(_ element: Int) &#123;</span><br><span class="line">        self.list.append(element)</span><br><span class="line">    &#125;</span><br><span class="line">    func pop(_ element: Int) -&gt; Int? &#123;</span><br><span class="line">        return self.list.popLast()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class DoubleList: ListProtcol &#123;</span><br><span class="line">    var list = [Double]()</span><br><span class="line">    func push(_ element: Double) &#123;// 自动推断</span><br><span class="line">        self.list.append(element)</span><br><span class="line">    &#125;</span><br><span class="line">    func pop(_ element: Double) -&gt; Double? &#123;</span><br><span class="line">        return self.list.popLast()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 使用使用泛型 </span><br><span class="line">class AnyList&lt;T&gt;: ListProtcol &#123;</span><br><span class="line">    var list = [T]()</span><br><span class="line">    func push(_ element: T) &#123;</span><br><span class="line">        self.list.append(element)</span><br><span class="line">    &#125;</span><br><span class="line">    func pop(_ element: T) -&gt; T? &#123;</span><br><span class="line">        return self.list.popLast()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 可以使用 where 字句限定 Element 类型</span><br><span class="line">extension ListProtcol where Element == Int &#123;</span><br><span class="line">    func isInt() -&gt;Bool &#123;</span><br><span class="line">        return true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="18-什么时候使用-final"><a href="#18-什么时候使用-final" class="headerlink" title="18.什么时候使用 final"></a>18.什么时候使用 final</h3><p>final 用于限制继承和重写。<br>例如 final var, final func, final class func, 和 final subscript<br>也可以限制整个类，在 class 前面 加上 final</p>
+<h3 id="19-public-和-open-的区别"><a href="#19-public-和-open-的区别" class="headerlink" title="19.public 和 open 的区别"></a>19.public 和 open 的区别</h3><p>这两个都是用于模块中生命需要对外暴露的函数。区别在于： public 修饰的类，在模块外，无法继承； open 则可以任何继承。公开度来说，public &lt; open</p>
+<h3 id="20-生命一个只有一个参数没有返回值闭包的别名"><a href="#20-生命一个只有一个参数没有返回值闭包的别名" class="headerlink" title="20.生命一个只有一个参数没有返回值闭包的别名"></a>20.生命一个只有一个参数没有返回值闭包的别名</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">typealias SomeClosureType = (String) -&gt; (Void)</span><br><span class="line">let someClosure: SomeClosureType = &#123; (name) in</span><br><span class="line">    print(&quot;hello &quot;, name)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">SomeClosureType(&quot;world&quot;)</span><br><span class="line">// hello world</span><br></pre></td></tr></table></figure>
+
+<h3 id="21-Self-的使用场景"><a href="#21-Self-的使用场景" class="headerlink" title="21.Self 的使用场景"></a>21.Self 的使用场景</h3><p>self 通常在协议中使用，用来表示实现者或者是实现者的子类类型</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">// 定义一个复制协议</span><br><span class="line">protocol CopyProtocol &#123;</span><br><span class="line">    func copy() -&gt; Self</span><br><span class="line">&#125;</span><br><span class="line">// 结构体实现，将 self 换为具体的类型</span><br><span class="line">struct SomeStruct: CopyProtocol &#123;</span><br><span class="line">    let value: Int</span><br><span class="line">    func copy() -&gt; SomeStruct &#123;</span><br><span class="line">        return SomeStruct(value: self.value)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">// 类实现，有点复杂，需要一个 required 的初始化方法</span><br><span class="line">class SomeCopyableClass: CopyProtocol &#123;</span><br><span class="line">    func copy() -&gt; Self &#123;</span><br><span class="line">        return type(of: self).init()</span><br><span class="line">    &#125;</span><br><span class="line">    required init()&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="22-Dynamic-的作用"><a href="#22-Dynamic-的作用" class="headerlink" title="22.Dynamic 的作用"></a>22.Dynamic 的作用</h3><p>由于 swift 是一个静态语言, 所以没有 Objective-C 中的消息发送这些动态机制, dynamic 的作用就是让 swift 代码也能有 Objective-C 中的动态机制, 常用的地方就是 KVO 了, 如果要监控一个属性, 则必须要标记为 dynamic。</p>
+<h3 id="23-什么时候使用-objc"><a href="#23-什么时候使用-objc" class="headerlink" title="23.什么时候使用 @objc"></a>23.什么时候使用 @objc</h3><p>@objc 用于在 Objective-C 和 Swfit 混编时，正常调用 swfit 代码。可以用于修饰类，协议，方法，属性<br>常用与 delegate 中</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@objc protocol OptionalProtocol &#123;</span><br><span class="line">    @objc optional func optionalFunc()</span><br><span class="line">    func normalFunc()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class OptionalProtocolClass: OptionalProtocol &#123;</span><br><span class="line">    func normalFunc() &#123;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let someOptionalDelegate: OptionalProtocol = OptionalProtocolClass()</span><br><span class="line"></span><br><span class="line">someOptionalDelegate.optionalFunc?()</span><br></pre></td></tr></table></figure>
+
+<h3 id="24-Optional-是怎么实现的"><a href="#24-Optional-是怎么实现的" class="headerlink" title="24.Optional 是怎么实现的"></a>24.Optional 是怎么实现的</h3><p>optional 是一个泛型枚举<br>定义如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">enum Optional&lt;Wrapped&gt; &#123;</span><br><span class="line">    case none</span><br><span class="line">    case some(Wrapped)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除了使用 let someValue: Int? &#x3D; nil 之外，还可以 使用 let optinal1: Optional &#x3D; nil 来定义</p>
+<h3 id="25-如何自定义下标获取"><a href="#25-如何自定义下标获取" class="headerlink" title="25.如何自定义下标获取"></a>25.如何自定义下标获取</h3><p>实现 subscript 即可， 如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">extension AnyList &#123;</span><br><span class="line">    subscript(index: Int) -&gt; T &#123;</span><br><span class="line">        return self.list[index]</span><br><span class="line">    &#125;</span><br><span class="line">    subscript(indexString: String) -&gt; T? &#123;</span><br><span class="line">        guard let index = Int(indexString) else &#123;</span><br><span class="line">            return nil</span><br><span class="line">        &#125;</span><br><span class="line">        return self.list[index]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>索引除了数字之外，其他类型也是可以的</p>
+<h3 id="26-的作用"><a href="#26-的作用" class="headerlink" title="26.?? 的作用"></a>26.?? 的作用</h3><p>可选值的默认值, 当可选值为nil 的时候, 会返回后面的值. 如</p>
+<p>let someValue &#x3D; optional1 ?? 0</p>
+<h3 id="27-lazy-的作用"><a href="#27-lazy-的作用" class="headerlink" title="27.lazy 的作用"></a>27.lazy 的作用</h3><p>懒加载, 当属性要使用的时候, 才去完成初始化</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class LazyClass &#123;</span><br><span class="line">    lazy var someLazyValue: Int = &#123;</span><br><span class="line">        print(&quot;lazy init value&quot;)</span><br><span class="line">        return 1</span><br><span class="line">    &#125;()</span><br><span class="line">    var someNormalValue: Int = &#123;</span><br><span class="line">        print(&quot;normal init value&quot;)</span><br><span class="line">        return 2</span><br><span class="line">    &#125;()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">let lazyInstance = LazyClass()</span><br><span class="line">print(lazyInstance.someNormalValue)</span><br><span class="line">print(lazyInstance.someLazyValue)</span><br></pre></td></tr></table></figure>
+
+<h3 id="28-一个类型表示选项，可以同时有几个选项选中（类似-UIViewAnimationOptions-），用什么类型表示"><a href="#28-一个类型表示选项，可以同时有几个选项选中（类似-UIViewAnimationOptions-），用什么类型表示" class="headerlink" title="28.一个类型表示选项，可以同时有几个选项选中（类似 UIViewAnimationOptions ），用什么类型表示"></a>28.一个类型表示选项，可以同时有几个选项选中（类似 UIViewAnimationOptions ），用什么类型表示</h3><p>需要实现自 OptionSet ，一般使用 struct 实现。由于 OptionSet 要求一个不可失败的 init(rawValue:) 构造器，而枚举无法做到这一点（枚举的原始值构造器是可以失败的，而且有些组合值，是没办法用一个枚举值表示的）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">struct SomeOption: OptionSet &#123;</span><br><span class="line">    let rawValue: Int</span><br><span class="line">    static let option1 = SomeOption(rawValue: 1 &lt;&lt; 0)</span><br><span class="line">    static let option2 = SomeOption(rawValue: 1 &lt;&lt; 1)</span><br><span class="line">    static let option3 = SomeOption(rawValue: 1 &lt;&lt; 2)</span><br><span class="line">&#125;</span><br><span class="line">let options: SomeOption = [.option1, .option2]</span><br></pre></td></tr></table></figure>
+
+<h3 id="29-inout-的作用"><a href="#29-inout-的作用" class="headerlink" title="29.inout 的作用"></a>29.inout 的作用</h3><p>输入输出参数更改</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">func swap(a: inout Int, b: inout Int) &#123;</span><br><span class="line">    let temp = a</span><br><span class="line">    a = b</span><br><span class="line">    b = temp</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var a = 1</span><br><span class="line">var b = 2</span><br><span class="line">print(a,b) // 1 2</span><br><span class="line">swap(&amp;a, &amp;b)</span><br><span class="line">print(a,b) // 2 1</span><br></pre></td></tr></table></figure>
+
+<h3 id="30-Error-如果要兼容-NSError-需要做什么操作"><a href="#30-Error-如果要兼容-NSError-需要做什么操作" class="headerlink" title="30.Error 如果要兼容 NSError 需要做什么操作"></a>30.Error 如果要兼容 NSError 需要做什么操作</h3><p>其实直接转换就可以, 例如 SomeError.someError as NSError 但是这样没有错误码, 描述等等, 如果想和 NSError 一样有这些东西, 只需要实现 LocalizedError 和 CustomNSError 协议, 有些方法有默认实现, 可以略过, 如:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">enum SomeError: Error, LocalizedError, CustomNSError &#123;</span><br><span class="line">    case error1, error2</span><br><span class="line">    public var errorDescription: String? &#123;</span><br><span class="line">        switch self &#123;</span><br><span class="line">        case .error1:</span><br><span class="line">            return &quot;error description error1&quot;</span><br><span class="line">        case .error2:</span><br><span class="line">            return &quot;error description error2&quot;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    var errorCode: Int &#123;</span><br><span class="line">        switch self &#123;</span><br><span class="line">        case .error1:</span><br><span class="line">            return 1</span><br><span class="line">        case .error2:</span><br><span class="line">            return 2</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    public static var errorDomain: String &#123;</span><br><span class="line">        return &quot;error domain SomeError&quot;</span><br><span class="line">    &#125;</span><br><span class="line">    public var errorUserInfo: [String : Any] &#123;</span><br><span class="line">        switch self &#123;</span><br><span class="line">        case .error1:</span><br><span class="line">            return [&quot;info&quot;: &quot;error1&quot;]</span><br><span class="line">        case .error2:</span><br><span class="line">            return [&quot;info&quot;: &quot;error2&quot;]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">print(SomeError.error1 as NSError)</span><br></pre></td></tr></table></figure>
+
+<h3 id="31-下面的代码用到了哪些语法糖-1-2-3-map-0-2"><a href="#31-下面的代码用到了哪些语法糖-1-2-3-map-0-2" class="headerlink" title="31.下面的代码用到了哪些语法糖 [1,2,3].map {$0 * 2}"></a>31.下面的代码用到了哪些语法糖 [1,2,3].map {$0 * 2}</h3><p>1.[1,2,3]使用了 Array 实现的 ExpressibleByArrayLiteral 协议, 用于接收数组的字面值</p>
+<p>2.map{xxx} 使用了闭包。</p>
+<p>作为最后一个参数时, 可以直接写在调用后面, 而且, 如果是唯一参数的话, 圆括号也可以省略<br>闭包没有声明函数参数, 返回值类型, 数量, 依靠的是闭包类型的自动推断<br>闭包中语句只有一句时, 自动将这一句的结果作为返回值 $0 在没有声明参数列表的时候, 第一个参数名称为$0, 后续参数以此类推</p>
+<h3 id="32-什么是高阶函数"><a href="#32-什么是高阶函数" class="headerlink" title="32.什么是高阶函数"></a>32.什么是高阶函数</h3><p>一个板书如果可以以某一个函数作为函数，或者返回值，那么这个函数就称之为高阶函数<br>如: map、reduce、filter</p>
+<h3 id="33-如何解决引用循环"><a href="#33-如何解决引用循环" class="headerlink" title="33.如何解决引用循环"></a>33.如何解决引用循环</h3><p>转换为值类型，只有类会存在引用循环，所以如果能不是类可以解决引用循环<br>delegate 使用weak 属性<br>闭包中，对有可能发生循环引用的对象，使用 weak 或者 unowned 修饰</p>
+<h3 id="34-下面的代码会不会崩溃，说出原因"><a href="#34-下面的代码会不会崩溃，说出原因" class="headerlink" title="34. 下面的代码会不会崩溃，说出原因"></a>34. 下面的代码会不会崩溃，说出原因</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var mutableArray = [1,2,3]</span><br><span class="line">for _ in mutableArray &#123;</span><br><span class="line">    mutableArray.removeLast()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不会，for in 开始时对 mutableArray 进行一次补货，而 Array 是值类型，removeLast() 并不能修改捕获的值</p>
+<h3 id="35-给集合中的元素是字符串的类型增加一个扩展方法，应该怎么生命"><a href="#35-给集合中的元素是字符串的类型增加一个扩展方法，应该怎么生命" class="headerlink" title="35.给集合中的元素是字符串的类型增加一个扩展方法，应该怎么生命"></a>35.给集合中的元素是字符串的类型增加一个扩展方法，应该怎么生命</h3><p>使用 where 子句，限制 Element 为 String</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">extension Array where Element == String &#123;</span><br><span class="line">    var isStringElement:Bool &#123;</span><br><span class="line">        return true</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">[&quot;1&quot;,&quot;2&quot;].isStringElement</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="36-定义静态方法时关键词-static-和-calss-有什么区别"><a href="#36-定义静态方法时关键词-static-和-calss-有什么区别" class="headerlink" title="36.定义静态方法时关键词 static 和 calss 有什么区别"></a>36.定义静态方法时关键词 static 和 calss 有什么区别</h3><p>static 定义的方法 不可以被子类集成，calss 可以</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">class AnotherClass &#123;</span><br><span class="line">    static func staticMethod() &#123;&#125;</span><br><span class="line">    class func classMethod() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class ChildOfAnotherClass: AnotherClass &#123;</span><br><span class="line">    override class func classMethod() &#123;&#125;</span><br><span class="line">//    override static func staticMethod() &#123;&#125; // error</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="37-一个-Sequence-的索引是不是一定从-0-开始的？"><a href="#37-一个-Sequence-的索引是不是一定从-0-开始的？" class="headerlink" title="37. 一个 Sequence 的索引是不是一定从 0 开始的？"></a>37. 一个 Sequence 的索引是不是一定从 0 开始的？</h3><p>不一定，两个for in 并不能保证都是0开始的，且输出结果一致。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">for element in sequence &#123;</span><br><span class="line">    if ... some condition &#123; break &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">for element in sequence &#123;</span><br><span class="line">    // No defined behavior</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">struct Countdowm: Sequence, IteratorProtocol &#123;</span><br><span class="line">    var count: Int</span><br><span class="line">    </span><br><span class="line">    mutating func next() -&gt; Int? &#123;</span><br><span class="line">        if count == 0 &#123;</span><br><span class="line">            return nil</span><br><span class="line">        &#125;else &#123;</span><br><span class="line">            defer &#123;</span><br><span class="line">                count -= 1</span><br><span class="line">            &#125;</span><br><span class="line">            return count</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">let threeToGo = Countdowm(count: 3)</span><br><span class="line">print(&quot;begin 1&quot;)</span><br><span class="line">for i in threeToGo &#123;</span><br><span class="line">    print(i)</span><br><span class="line">&#125;</span><br><span class="line">print(&quot;end 1&quot;)</span><br><span class="line"></span><br><span class="line">print(&quot;begin 2&quot;)</span><br><span class="line">for i in threeToGo &#123;</span><br><span class="line">    print(i)</span><br><span class="line">&#125;</span><br><span class="line">print(&quot;end 2&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>从结果看，第二次是没有任何输出的。在第二次进行 for in 时 count 没有重置</p>
+<h3 id="38-数组都实现了哪些协议"><a href="#38-数组都实现了哪些协议" class="headerlink" title="38.数组都实现了哪些协议"></a>38.数组都实现了哪些协议</h3><p>MutableCollection 实现了可修改的数组 如 a[1] &#x3D; 2<br>ExpressibleByArrayLiteral 实现了数组可以从 [1,2,3] 这种字面值初始化的能力<br>…</p>
+<h3 id="39-如何自定义模式匹配"><a href="#39-如何自定义模式匹配" class="headerlink" title="39.如何自定义模式匹配"></a>39.如何自定义模式匹配</h3><p>参考喵神 swfit tips<br><a target="_blank" rel="noopener" href="http://swifter.tips/pattern-match/">http://swifter.tips/pattern-match/</a></p>
+<h3 id="40-autoclosure-的作用"><a href="#40-autoclosure-的作用" class="headerlink" title="40.autoclosure 的作用"></a>40.autoclosure 的作用</h3><p>自动闭包，会自动将一个表达式封装为闭包。如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">func autoClosureFunction(_ closure: @autoclosure () -&gt; Int) &#123;</span><br><span class="line">    closure()</span><br><span class="line">&#125;</span><br><span class="line">autoClosureFunction(1)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>参考喵神 swfit tips<br><a target="_blank" rel="noopener" href="http://swifter.tips/autoclosure/">http://swifter.tips/autoclosure/</a></p>
+<h3 id="41-编译选项-whole-mode-optmization-优化了什么"><a href="#41-编译选项-whole-mode-optmization-优化了什么" class="headerlink" title="41.编译选项 whole mode optmization 优化了什么"></a>41.编译选项 whole mode optmization 优化了什么</h3><ul>
+<li>编译器可以跨文件优化编译代码，不局限于一个文件</li>
+<li>优化了编译编译，执行速度</li>
+</ul>
+<h3 id="42-下面代码中-mutating-的作用是什么"><a href="#42-下面代码中-mutating-的作用是什么" class="headerlink" title="42.下面代码中 mutating 的作用是什么"></a>42.下面代码中 mutating 的作用是什么</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">struct Person &#123;</span><br><span class="line">    var name: String &#123;</span><br><span class="line">        mutating get &#123;</span><br><span class="line">            return store</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>mutating 表示有可能修改这个结构体，所以只有 var 对象才可以调用</p>
+<h3 id="43-如何让自定义对象支持字面量初始化"><a href="#43-如何让自定义对象支持字面量初始化" class="headerlink" title="43.如何让自定义对象支持字面量初始化"></a>43.如何让自定义对象支持字面量初始化</h3><p>有几个协议, 分别是<br>ExpressibleByArrayLiteral 可以由数组形式初始化<br>ExpressibleByDictionaryLiteral 可以由字典形式初始化<br>ExpressibleByNilLiteral 可以由nil 值初始化<br>ExpressibleByIntegerLiteral 可以由整数值初始化<br>ExpressibleByFloatLiteral 可以由浮点数初始化<br>ExpressibleByBooleanLiteral 可以由布尔值初始化<br>ExpressibleByUnicodeScalarLiteral<br>ExpressibleByExtendedGraphemeClusterLiteral<br>ExpressibleByStringLiteral<br>这三种都是由字符串初始化, 上面两种包含有 Unicode 字符和特殊字符</p>
+<h3 id="44-dynamic-framework-和-static-framework-的区别是什么"><a href="#44-dynamic-framework-和-static-framework-的区别是什么" class="headerlink" title="44.dynamic framework 和 static framework 的区别是什么"></a>44.dynamic framework 和 static framework 的区别是什么</h3><p>静态库和动态库, 静态库是每一个程序单独打包一份, 而动态库则是多个程序之间共享</p>
+<h3 id="45-为什么数组索引越界会崩溃，而字典用下标取值时-key-没有对应值的话返回的是-nil-不会崩溃"><a href="#45-为什么数组索引越界会崩溃，而字典用下标取值时-key-没有对应值的话返回的是-nil-不会崩溃" class="headerlink" title="45.为什么数组索引越界会崩溃，而字典用下标取值时 key 没有对应值的话返回的是 nil 不会崩溃"></a>45.为什么数组索引越界会崩溃，而字典用下标取值时 key 没有对应值的话返回的是 nil 不会崩溃</h3><p>数组的对象的储蓄地址是连续的，如果越界了，那取到的地址不一定可用，所以报错。毕竟还是需要有可以信任的部分的</p>
+<h3 id="46-一个函数的参数类型只要是数字（Int、Float）都可以，要怎么表示。"><a href="#46-一个函数的参数类型只要是数字（Int、Float）都可以，要怎么表示。" class="headerlink" title="46.一个函数的参数类型只要是数字（Int、Float）都可以，要怎么表示。"></a>46.一个函数的参数类型只要是数字（Int、Float）都可以，要怎么表示。</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">func isNumber&lt;T : SignedNumber&gt;(_ number : T)&#123;</span><br><span class="line">    print(&quot;yes, it is a number&quot;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="备注"><a href="#备注" class="headerlink" title="备注"></a>备注</h3><p>面试题来源 ： 卓同学的 Swift 面试题<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/7c7f4b4e4efe">https://www.jianshu.com/p/7c7f4b4e4efe</a></p>
+<p>答案参考： yww 答《卓同学的 Swift 面试题》上,下<br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/23d99f434281">https://www.jianshu.com/p/23d99f434281</a><br><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/cc4a737ddc1d">https://www.jianshu.com/p/cc4a737ddc1d</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2018/05/23/20180417/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/05/23/20180417/" class="post-title-link" itemprop="url">18年东京周边之旅</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-05-23 18:47:19" itemprop="dateCreated datePublished" datetime="2018-05-23T18:47:19+08:00">2018-05-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-06-08 11:28:50" itemprop="dateModified" datetime="2018-06-08T11:28:50+08:00">2018-06-08</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%97%85%E8%A1%8C/" itemprop="url" rel="index"><span itemprop="name">旅行</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>17 年双十二期间，在飞猪上面看到 18年樱花季🌸的机票。经过多次对比，最终定下了 4月中旬ANA上海飞东京的红眼航班。票价人民币 1314。接下来就慢慢期待 4月的到来。<br>一轮轮的 18年樱花预测来袭，由于天气等原因，东京樱花季提前到的 4月初。内心一凉，看不了樱花的全景，只好更新行程。在此感谢小伙伴的理解和支持。</p>
+<h2 id="行程"><a href="#行程" class="headerlink" title="行程"></a>行程</h2><p>本次由于没有靠近清明节，所以只请假2天，带上周末。4天行程有点紧张。行程规划好，还是可以好好地玩耍~ </p>
+<h3 id="4-12日"><a href="#4-12日" class="headerlink" title="4.12日"></a>4.12日</h3><p>由于是红眼航班，凌晨 1：45 的飞机。只好晚上下班之后，开车前往浦东机场。8点多出发，途中接上小伙伴。10点左右到达机场停车场。预约了 e代泊服务。交接好车子。就前往国际出发层。<br>1.取环球漫游WiFi<br>2.办理登机牌<br>ANA柜台面前，前一班航班正在值机，询问了服务人员。告知需要在11：30之后才可以进行值机。</p>
+<p><img src="/images/IMG_0083.JPG"></p>
+<p>到值机的时候，由于已经在线值机，很快就托运好行李，取好登机牌。<br>3.出入境检查<br>照例排队走流程~<br>4.准备值机<br>差不多12点半左右，又睡了一会，准时值机。就是自己是在太困，吃完飞机餐后，就睡觉了。</p>
+<p>5.WOW,Tokyo</p>
+<p><img src="/images/IMG_8435.JPG"></p>
+<h2 id="4-13日"><a href="#4-13日" class="headerlink" title="4.13日"></a>4.13日</h2><p>准备入境，没想到早上 6点的人还这么多，真的很多。进入羽田机场到达层。按照之前计划，购买东京广域三日券（Tokyo wide pass）。同样排队，直到 8点多才购买到。</p>
+<p>乘坐🚇到达东京站，东京站没有想象中的大而华丽。购买好🍱，就去转乘新干线到宇都宫站。可以提前划好指定席哦。</p>
+<p><img src="/images/0413-1.jpeg"></p>
+<p>在新干线吃着崎陽轩的烧麦🍱。一个小时之后就到达宇都宫站。</p>
+<p><img src="/images/0413-2.jpeg"></p>
+<p>由于宇都宫站的行李寄存满了，知道带着行李，前往日光站。一个小时慢慢悠悠的小火车，有走在山间小道的感觉。乡下的感觉就是不一样。</p>
+<p><img src="/images/0413-3.jpeg"></p>
+<p>在JR日光站短暂停留后，购买日光公交一日券 500日元。坐车前往东武日光站。两站相隔也就几百米。由于手里还有行李箱，本应寄存在 jr车展内，通过 jr店员得知，在 jr东武日光站对面的 <em>Nikko Park Lodge</em> 中可以寄存，只要 300日元&#x2F;件。感谢工作人员提醒。</p>
+<p><img src="/images/IMG_0101.JPG" alt="寄存行李的hotel"></p>
+<p>寄存完行李后，就沿公路往神桥走去。</p>
+<p><img src="/images/IMG_0106.JPG" alt="日光街景"></p>
+<p><img src="/images/IMG_0107.JPG"></p>
+<p><img src="/images/IMG_0108.JPG"></p>
+<p><img src="/images/IMG_0110.JPG"></p>
+<p>沿日光国立公园石阶走上去，实在悠闲。</p>
+<p><img src="/images/IMG_0112.JPG"></p>
+<p>主要参观了日光二荒神社，日光轮王寺宝物殿（在整修，没有进去详细参观），日光东照宫门口拍拍照，大致浏览下，就去日光二荒山神社，下午正在举行什么祭祀仪式。满隆重的。仪式感很强。神社旁边的狮子很给力。</p>
+<p>参观完，日光的世界遗产，不觉肚子有点饿了。就近找到了便利店，买了点吃喝。</p>
+<p>按照计划，我们慢悠悠的回到了JR东武日光站。换乘电车前往鬼怒川温泉，需要在下今站换乘。电车人很少，一路听着隔壁奶奶们在聊天。乡村生活就是悠闲。差不多 40分钟左右，我们到了鬼怒川温泉站。出站后，感觉有点凉。衣服穿得不多，夏季记得带外套！站前有个雕像。样子有点凶(*￣(エ)￣)。</p>
+<p>由于到的时候大概是下午3点半左右。就简单的参观了下周围。买了些当地限定的温泉馒头，和一些小的吃的。很好吃，甜而不腻，早知道多带点回来了。去一次不容易。<br>回程换了一辆电车，可以直达JR东武日光。一路无话，看着窗外的风景，不得不说，自然风景可以的。<br><img src="/images/IMG_0176.JPG"></p>
+<p>出JR东武日光站后，取行李，准备回宇都宫站。JR东武日光站到宇都宫大概一个小时。到达宇都宫已经是傍晚了。宇都宫最出名的当然是饺子啦。虽然比不上大天朝的，还是要尝试下。选了JR站内的一家饺子馆，要了一份饺子和一份米饭。饺子外脆里嫩，注意烫哦。😂</p>
+<p>今天一天还蛮累的，晚上是要 JR新白河站附近的东横酒店（福岛刷三年签证酒店）。性价比很高。由于手持东京广域三日券，可以直接从宇都宫坐新干线到那须盐原，到不了新白河，最后补车子 1360日元直接到新白河站。另一种走法，就是先到那须盐原，再转普通列车到黑矶（利用三日券免费），最后补 450日元到新白河站。但是时间比较长哦。</p>
+<p>晚上的新白河确实没什么人，也没什么可以吃东西的地方。还是乖乖的回酒店吧。</p>
+<p>东横inn酒店就在新白河站对面，出站就能看到。酒店check in 之后，服务员小姐姐，会主动问是否需要宿泊证明书，请记得索要的，此行就是为这个来的呢。另外早餐提供哦，不说了，早餐真丰盛。好喜欢吃小肉圆~</p>
+<p>再啰嗦下酒店的房间虽小，但是该有的东西都有。整体体验很好。献上一张早上的远望图。</p>
+<p><img src="/images/IMG_0179.JPG"></p>
+<h2 id="4-14日"><a href="#4-14日" class="headerlink" title="4.14日"></a>4.14日</h2><p>早早的就醒了，看着窗外的景色，原来清晨也可以如此安静。吃完酒店的早餐，日式早餐还是比较丰盛的。收拾好行李就准备退房，让我们会东京吧。这次我们是从新白河到黑矶，站内换乘到那须盐原，然后从那须盐原坐新干线到东京。</p>
+<p><img src="/images/IMG_0184.JPG"></p>
+<p>上午10点半东京乘坐山手线到莺谷，然后去民宿 check in 。由于去的比较早，等了一会房东先生。最后独立的房间还是有惊艳到我。毕竟在东京能找到这么经济实惠的住宿不容易。</p>
+<p><img src="/images/IMG_0188.JPG"></p>
+<p>中午的就在上野站附近有名的三浦三崎港享用回转寿司。这家排队的原因就是食材新鲜，量大实惠。</p>
+<p>轻井泽，我来了。轻井泽被称为东京的后花园。是度假圣地，不仅有美丽的景色，还有奥特莱斯。来到这当然要好好的购物。</p>
+<p>从上野出发，新干线 1个小时到达轻井泽。下午半天就在这里度过了。买了些衣服，鞋子。配了一副眼镜。</p>
+<p>带着满满的战利品，从轻井泽回到上野。回到住的地方已经精疲力尽了。但是还想去浅草附近看看。走着过去也不是很近。顺便做了一辆公交，公交司机居然没收钱。。。</p>
+<h2 id="4-15日"><a href="#4-15日" class="headerlink" title="4.15日"></a>4.15日</h2><p>今天由于天气原因，本来要出发去镰仓和横滨的。只好去东京最繁华的地方–银座逛逛吧。正值周末，上午乘坐JR山手线大约在10点多左右到达有乐町站。出来走一会就到了银座。毕竟是周末，熙熙攘攘的人群已经开始攒动。来都来了自然是要逛一番的。</p>
+<p>优衣库，哇整个6层，d&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;(￣▽￣*)b厉害。</p>
+<p>Apple Store 银座店打卡，人事真的多，早上11点多已经有十几个人在排队购买 iPhone X。</p>
+<p>当然三越百货银座店也要去看看的。<br>下午去 BIG Camera 买了一台 Switch。之后就去 最大的无印良品。<br>围绕着JR山手线，打卡涩谷，和忠犬八公照相。<br>去新宿吃的晚饭。<br>代代木还没去~身体已经不行了，赶紧回去补眠。</p>
+<h2 id="4-16日"><a href="#4-16日" class="headerlink" title="4.16日"></a>4.16日</h2><p>早上6点半就起来，今天要去东京迪士尼海洋。超激动的😝。民宿主人亲自开车送我们去日暮里车站。在此十分感谢。<br>行李寄存在了JR东京站的JR寄存处，收费有点贵哦，一个箱子800日元。由于赶时间，没仔细看，早知道就寄存在自助寄存箱中了。<br>JR东京站到乘坐JR舞浜站中间要走一条长长的路，保守估计5分钟要的。<br>大约9点钟到达JR舞浜站。出站后，可以直接乘坐公交到达。左手迪士尼海洋，右手迪士尼乐园。</p>
+<p>let’s go！</p>
+<p>直接刷票进场。由于提前做好攻略，第一个去取玩具总动员的FP。排队的人很多，记得提前来取哦。<br>我这一天的大致线路：<br>1.排队美国海滨-玩具总动员FP<br>2.前往前往神秘岛-海底两万里，在这里和小伙伴走失😢，还好最后找到了<del>看到地心历险排队30分钟，回到美国海滨，乘坐迪士尼海洋电气铁路，到达发现港。直接排队水上逗趣船。<br>3.之后再中廊点心出买了小吃。穿过小径，来到神秘岛，由于美人鱼礁石比较适合小朋友玩，都是亲子，我们就转战失落和三角洲，排队忿怒双神。人还是比较多，但是FP在下午之后还是可以抽到。忿怒双神出来，印第安纳琼斯</del>哈哈，顺便把水晶骷髅头魔宫也排队40分钟。愿望达成~<br>4.出来之后前往美国海滨-惊魂古堡，em……确实刺激。在途中经过了发现港，抽FP的时间也差不多了，就把尼莫和好友的海洋世界FP抽了。之后去排队惊魂古堡，太刺激了，出来后，小伙伴还要在玩一次。赶紧抽个惊魂古堡FP压压惊~</p>
+<p>5.来了迪士尼，水上游船怎么可以不坐呢，而且还没人排队，😝。在前往发现港途中，赶紧排队迪士尼海洋独轮航线，排队10分钟，绕岛一周，值！！！</p>
+<p>6.手上的发现港FP快到时间了，赶紧过去。嘿嘿，还是海底世界棒棒的，居然有水溅出来。出来后看到高飞~</p>
+<p>7.出发前往美人鱼礁石，羞耻的玩了跳跃水母，旋转海藻杯2次😝。美人鱼礁石剧场不排队，那就看下咯。(@ο@) 哇～美人鱼~</p>
+<p>8.玩具总动员的FP时间快到了，走吧。哈哈，打豆豆！我的妈啊。还是小伙伴战斗力强点。接着惊魂古堡FP时间也到了，那就一起吧。</p>
+<p>9.好像遗漏了什么，阿拉伯海岸还没去，来吧一个个过，好歹排队时间都不长基本10分钟。先从茉莉公主的飞天魔毯开始，之后去辛巴达传奇之旅，坐着小船体验一回矮人国<del>然后就是沙漠商队的旋转木马，你懂得</del>最后排队神灯剧场~</p>
+<p>10.由于要赶晚上10点多的飞机，只能早早地离开，夜间的烟火晚会没有看到。</p>
+<p>总之，基本把有了设施全部都玩了下<del>也不枉此行</del>(≧▽≦)&#x2F;~啦啦啦</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>看到樱花的尾巴，短暂的4天东京之行，就此告一段落。后会有期。希望明年能看到樱花盛开的景色。<br>有点遗憾，计划中的镰仓没有去，计划中的富士急乐园没有去。带着遗憾，期待下次的旅程吧。</p>
+<p>在此也感谢小伙伴一路的支持。谢谢~</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2018/05/22/%E5%88%A9%E7%94%A8vps%E6%90%AD%E5%BB%BAblog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/05/22/%E5%88%A9%E7%94%A8vps%E6%90%AD%E5%BB%BAblog/" class="post-title-link" itemprop="url">利用vps搭建blog</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2018-05-22 18:50:00 / 修改时间：20:21:26" itemprop="dateCreated datePublished" datetime="2018-05-22T18:50:00+08:00">2018-05-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>闲置的vps，正好能排上用场。今天就尝试搭建自己的博客。记录下生活点滴也好。</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前一直想搭建blog，最近有点时间。正好有vps闲置，就购买了域名，来建个博客。</p>
+<p>根据网上的攻略，一步步走下来，还是蛮开心的。hexo的页面风格令人眼前一亮。</p>
+<h3 id="大致流程"><a href="#大致流程" class="headerlink" title="大致流程"></a>大致流程</h3><ul>
+<li>1.本地生成静态文件</li>
+<li>2.部署本地文件到服务器vps</li>
+<li>3.使用Nginx做web服务</li>
+<li>4.通过hexo直接进行git部署</li>
+<li>5.即时更新博客，方便快捷</li>
+</ul>
+<h3 id="本地配置（Mac为例）"><a href="#本地配置（Mac为例）" class="headerlink" title="本地配置（Mac为例）"></a>本地配置（Mac为例）</h3><ul>
+<li><p>1.node.js 安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.git 安装<br>Mac：使用 Homebrew, MacPorts ：brew install git;或下载 安装程序 安装。<br>Mac如装有Xcode ，自带git。<br>git进行简单的全局配置。设置邮箱和用户名。最后生成ssh密钥。<br>记得拷贝id_rsa.pub 公钥</p>
+</li>
+<li><p>3.在本地根目录建立blog根目录</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">mkdir</span> blog <span class="comment"># blog 根目录文件名</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>4.hexo 安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br><span class="line">hexo d -<span class="built_in">fg</span></span><br><span class="line">hexo serve</span><br></pre></td></tr></table></figure></li>
+<li><p>5.预览<br>打开 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 即可看到你的站点</p>
+</li>
+<li><p>6.在服务器配置成功后，配置hexo<br>位于<em>hexo</em>文件夹下, <em>_config.yml</em> ,修改 <em>deploy</em> 选项</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: git@vps的ip地址或域名:hexo.git</span><br><span class="line">branch: master</span><br><span class="line">message: update</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>7.生成blog</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd blog </span><br><span class="line">hexo g </span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>一切正常就推送成功了！<br>至此，博客搭建完成。</p>
+</li>
+<li><p>8.更新博客（待完善）</p>
+</li>
+</ul>
+<h3 id="服务器配置（Ubuntu为例）"><a href="#服务器配置（Ubuntu为例）" class="headerlink" title="服务器配置（Ubuntu为例）"></a>服务器配置（Ubuntu为例）</h3><p>1.Nginx安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>启动Nginx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/nginx start</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2.git 安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install git </span><br></pre></td></tr></table></figure>
+<p>安装完成，确认安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+
+<p>3.新建git用户 添加权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adduser git</span><br><span class="line">chmod 740 /etc/sudoers</span><br><span class="line">vim /etc/sudoers</span><br></pre></td></tr></table></figure>
+<p>编辑页面中找到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># User privilege specification</span><br><span class="line">root    ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
+<p>添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git   ALL=(ALL)     ALL</span><br></pre></td></tr></table></figure>
+<p>保存并退出后</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 440 /etc/sudoers</span><br></pre></td></tr></table></figure>
+<p>创建Git仓库，配置ssh登陆（authorized_keys    &#x2F;&#x2F;在这个文件中粘贴进刚刚申请的key（在id_rsa.pub文件中））</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">su git</span><br><span class="line">cd ~</span><br><span class="line">mkdir .ssh &amp;&amp; cd .ssh</span><br><span class="line">touch authorized_keys</span><br><span class="line">vi authorized_keys </span><br><span class="line">cd ~ </span><br><span class="line">mkdir hexo.git &amp;&amp; cd hexo.git</span><br><span class="line">git init --bare</span><br></pre></td></tr></table></figure>
+<p>测试一下，如果在本地 <em><mark>shell</mark></em> 中输入 <em><mark>ssh git@VPS的IP地址</mark></em>,能够远程登录的话，则表示设置成功了。</p>
+<p>4.创建blog目录，并给与git网站所有权</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /var/www</span><br><span class="line">mkdir hexo</span><br><span class="line">chown git:git -R /var/www/hexo</span><br></pre></td></tr></table></figure>
+
+<p>5.配置git hooks</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">su git</span><br><span class="line">cd /home/git/hexo.git/hooks</span><br><span class="line">vim post-receive</span><br></pre></td></tr></table></figure>
+<p>加入以下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">GIT_REPO=/home/git/hexo.git #git仓库</span><br><span class="line">TMP_GIT_CLONE=/tmp/hexo</span><br><span class="line">PUBLIC_WWW=/var/www/hexo #网站目录</span><br><span class="line">rm -rf $&#123;TMP_GIT_CLONE&#125;</span><br><span class="line">git clone $GIT_REPO $TMP_GIT_CLONE</span><br><span class="line">rm -rf $&#123;PUBLIC_WWW&#125;/*</span><br><span class="line">cp -rf $&#123;TMP_GIT_CLONE&#125;/* $&#123;PUBLIC_WWW&#125;</span><br></pre></td></tr></table></figure>
+<p>赋予脚本的执行权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x post-receive</span><br></pre></td></tr></table></figure>
+
+<p>6.配置Nginx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/conf.d/hexo.conf</span><br><span class="line"></span><br><span class="line">插入如下代码：</span><br><span class="line">server &#123;</span><br><span class="line">listen         80 ;</span><br><span class="line">root /var/www/hexo;</span><br><span class="line">server_name example.com www.example.com;//注意：这里输入你的域名或IP地址</span><br><span class="line">access_log  /var/log/nginx/hexo_access.log;</span><br><span class="line">error_log   /var/log/nginx/hexo_error.log;</span><br><span class="line">location ~* ^.+\.(ico|gif|jpg|jpeg|png)$ &#123;</span><br><span class="line">root /var/www/hexo;</span><br><span class="line">access_log   off;</span><br><span class="line">expires      1d;</span><br><span class="line">&#125;</span><br><span class="line">location ~* ^.+\.(css|js|txt|xml|swf|wav)$ &#123;</span><br><span class="line">root /var/www/hexo;</span><br><span class="line">access_log   off;</span><br><span class="line">expires      10m;</span><br><span class="line">&#125;</span><br><span class="line">location / &#123;</span><br><span class="line">root /var/www/hexo;</span><br><span class="line">if (-f $request_filename) &#123;</span><br><span class="line">rewrite ^/(.*)$  /$1 break;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>7.重启Nginx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/nginx restart</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>1.<a target="_blank" rel="noopener" href="https://tiktoking.github.io/2016/01/26/hexo/">https://tiktoking.github.io/2016/01/26/hexo/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="neal"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">neal</p>
+  <div class="site-description" itemprop="description"></div>
 </div>
-
-
-
-
-
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
 </div>
-  </main>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:nealsherlock@gmail.com" title="E-Mail → mailto:nealsherlock@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
 
-  <footer class="footer">
-    <div class="footer-inner">
 
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
 
 <div class="copyright">
-  &copy; 
+  
+  &copy; 2019 – 
   <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">neal</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
-    </div>
-  </footer>
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
 
   
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
-<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
 
   
 
-  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.8/pdfobject.min.js","integrity":"sha256-tu9j5pBilBQrWSDePOOajCUdz6hWsid/lBNzK4KgEPM="},"url":"/lib/pdf/web/viewer.html"}</script>
-  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+
+
+
+
+
 
 
 
 
   
 
-
-
-
+  
 
 </body>
 </html>

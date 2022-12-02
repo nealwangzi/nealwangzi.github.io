@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nealwangzi.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="APP启动时间优化WWDC 2016 Session 406 内容概括，讲述如何优化 App 的启动时间。 App 运行理论main（） 执行之前的事情Mach-O 格式虚拟内存Mach-O二进制的加载 理论Mach-O 虚拟内存Mach-O 术语文件类型：1.Executable - 应用的主二进制2.Dylib - 动态库 （称为 DSO或者 DLL）3.Bundle - 不能被链接的Dyli">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WWDC16 APP启动时间优化">
+<meta property="og:url" content="https://nealwangzi.github.io/2017/07/07/20170505/index.html">
+<meta property="og:site_name" content="安东尼的博客">
+<meta property="og:description" content="APP启动时间优化WWDC 2016 Session 406 内容概括，讲述如何优化 App 的启动时间。 App 运行理论main（） 执行之前的事情Mach-O 格式虚拟内存Mach-O二进制的加载 理论Mach-O 虚拟内存Mach-O 术语文件类型：1.Executable - 应用的主二进制2.Dylib - 动态库 （称为 DSO或者 DLL）3.Bundle - 不能被链接的Dyli">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-7cf0cea073558ad9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-a98d4d90003e90f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-0e6dbf1d6d433f7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-0a3b55f357673010.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-c545bf3043a2ed04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-ed2bbf6d5635d4c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-3772b724dd5ce95b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-6330a60ad129f685.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2017-07-07T08:25:40.000Z">
+<meta property="article:modified_time" content="2018-06-06T08:28:40.000Z">
+<meta property="article:author" content="neal">
+<meta property="article:tag" content="日常,分享">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/425102-7cf0cea073558ad9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+<link rel="canonical" href="https://nealwangzi.github.io/2017/07/07/20170505/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>WWDC16 APP启动时间优化 | 安东尼的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">安东尼的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2017/07/07/20170505/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          WWDC16 APP启动时间优化
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2017-07-07 16:25:40" itemprop="dateCreated datePublished" datetime="2017-07-07T16:25:40+08:00">2017-07-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-06-06 16:28:40" itemprop="dateModified" datetime="2018-06-06T16:28:40+08:00">2018-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="APP启动时间优化"><a href="#APP启动时间优化" class="headerlink" title="APP启动时间优化"></a>APP启动时间优化</h1><p>WWDC 2016 Session 406 内容概括，讲述如何优化 App 的启动时间。</p>
+<h2 id="App-运行理论"><a href="#App-运行理论" class="headerlink" title="App 运行理论"></a>App 运行理论</h2><p>main（） 执行之前的事情<br>Mach-O 格式<br>虚拟内存<br>Mach-O二进制的加载</p>
+<h3 id="理论"><a href="#理论" class="headerlink" title="理论"></a>理论</h3><p>Mach-O 虚拟内存<br>Mach-O 术语<br>文件类型：<br>1.Executable - 应用的主二进制<br>2.Dylib - 动态库 （称为 DSO或者 DLL）<br>3.Bundle - 不能被链接的Dylib，只能在芸像是使用 *dlopen()*加载，或者作为插件<br>Image -  Executable ，Dylib 或者 Bundle<br>Framework -  Dylib 中包含 resources and headers</p>
+<h4 id="Mach-O-Image-File"><a href="#Mach-O-Image-File" class="headerlink" title="Mach-O Image File"></a>Mach-O Image File</h4><p>File 被或分为一些segments ，每个 segment 又被划分成一些 section。<br>segment的名字是大写，且控件大小为页的整数。页的大小和硬件有关， arm64 架构一页是 16KB，其余为 4KB。<br>section 虽然没有整数倍页大小的限制，但是 section 之间不会有重叠。<br>几乎所有 Mach-O 都包含这三个段（segment）：<br>__TEXT,__DATA 和 __LINKEDIT.</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-7cf0cea073558ad9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Mach-O"></p>
+<p>__TEXT 包含 Mach header，被执行的代码和只读常量（如C 字符串）。只读可执行（r-x）。</p>
+<p>__DATA 包含全局变量，静态变量等。可读写（rw-）。</p>
+<p>__LINKEDIT 包含了加载程序的『元数据』，比如函数的名称和地址。只读（r–）。</p>
+<h4 id="Mach-O-Universal-Files"><a href="#Mach-O-Universal-Files" class="headerlink" title="Mach-O Universal Files"></a>Mach-O Universal Files</h4><p>FAT 二进制文件，将多种架构的 Mach-O 文件合并而成。它通过 Fat Header 来记录不同架构在文件中的偏移量，Fat Header 占一页的空间。<br>按分页来存储这些 segment 和 header 会浪费空间，但这有利于虚拟内存的实现。</p>
+<h4 id="虚拟内存"><a href="#虚拟内存" class="headerlink" title="虚拟内存"></a>虚拟内存</h4><p>虚拟内存就是一层间接寻址（indirection）。软件工程中有句格言就是任何问题都能通过添加一个间接层来解决。虚拟内存解决的是管理所有进程使用物理 RAM 的问题。通过添加间接层来让每个进程使用逻辑地址空间，它可以映射到 RAM 上的某个物理页上。这种映射不是一对一的，逻辑地址可能映射不到 RAM 上，也可能有多个逻辑地址映射到同一个物理 RAM 上。针对第一种情况，当进程要存储逻辑地址内容时会触发 page fault；第二种情况就是多进程共享内存。</p>
+<p>对于文件可以不用一次性读入整个文件，可以使用分页映射（mmap()）的方式读取。也就是把文件某个片段映射到进程逻辑内存的某个页上。当某个想要读取的页没有在内存中，就会触发 page fault，内核只会读入那一页，实现文件的懒加载。</p>
+<p>也就是说 Mach-O 文件中的 __TEXT 段可以映射到多个进程，并可以懒加载，且进程之间共享内存。__DATA 段是可读写的。这里使用到了 Copy-On-Write 技术，简称 COW。也就是多个进程共享一页内存空间时，一旦有进程要做写操作，它会先将这页内存内容复制一份出来，然后重新映射逻辑地址到新的 RAM 页上。也就是这个进程自己拥有了那页内存的拷贝。这就涉及到了 clean&#x2F;dirty page 的概念。dirty page 含有进程自己的信息，而 clean page 可以被内核重新生成（重新读磁盘）。所以 dirty page 的代价大于 clean page。</p>
+<h4 id="Mach-O-镜像-加载"><a href="#Mach-O-镜像-加载" class="headerlink" title="Mach-O 镜像 加载"></a>Mach-O 镜像 加载</h4><p>所以在多个进程加载 Mach-O 镜像时 __TEXT 和  __LINKEDIT 因为只读，都是可以共享内存的。而 __DATA 因为可读写，就会产生 dirty page。当 dyld 执行结束后，__LINKEDIT 就没用了，对应的内存页会被回收。</p>
+<h4 id="安全"><a href="#安全" class="headerlink" title="安全"></a>安全</h4><p>ASLR（Address Space Layout Randomization）：地址空间布局随机化，镜像会在随机的地址上加载。这其实是一二十年前的旧技术了。</p>
+<p>代码签名：可能我们认为 Xcode 会把整个文件都做加密 hash 并用做数字签名。其实为了在运行时验证 Mach-O 文件的签名，并不是每次重复读入整个文件，而是把每页内容都生成一个单独的加密散列值，并存储在 __LINKEDIT 中。这使得文件每页的内容都能及时被校验确并保不被篡改。</p>
+<h4 id="从-exec-到-main"><a href="#从-exec-到-main" class="headerlink" title="从 exec() 到 main()"></a>从 exec() 到 main()</h4><p>exec() 是一个系统调用。系统内核把应用映射到新的地址空间，且每次起始位置都是_随机_的（因为使用 ASLR）。<br>并将起始位置到 0x000000 这段范围的进程权限都标记为不可读写不可执行。<br>如果是 32 位进程，这个范围至少是 4KB；<br>对于 64 位进程则至少是 4GB。<br>NULL 指针引用和指针截断误差都是会被它捕获。</p>
+<h4 id="dyld-加载-dylib-文件"><a href="#dyld-加载-dylib-文件" class="headerlink" title="dyld 加载 dylib 文件"></a>dyld 加载 dylib 文件</h4><p>Unix 的前二十年很安逸，因为那时还没有发明动态链接库。有了动态链接库后，一个用于加载链接库的帮助程序被创建。在苹果的平台里是 dyld，其他 Unix 系统也有 ld.so。 当内核完成映射进程的工作后会将名字为 dyld 的Mach-O 文件映射到进程中的随机地址，它将 PC 寄存器设为 dyld 的地址并运行。dyld 在应用进程中运行的工作是加载应用依赖的所有动态链接库，准备好运行所需的一切，它拥有的权限跟应用一样。</p>
+<p>下面的步骤构成了 dyld 的时间线：</p>
+<p>Load dylibs -&gt; Rebase -&gt; Bind -&gt; ObjC -&gt; Initializers</p>
+<h4 id="加载-Dylib"><a href="#加载-Dylib" class="headerlink" title="加载 Dylib"></a>加载 Dylib</h4><p>从主执行文件的 header 获取到需要加载的所依赖动态库列表，而 header 早就被内核映射过。<br>然后它需要找到每个 dylib，然后打开文件读取文件起始位置，确保它是 Mach-O 文件。<br>接着会找到代码签名并将其注册到内核。<br>然后在 dylib 文件的每个 segment 上调用 mmap()。<br>递归加载<br>应用所依赖的 dylib 文件可能会再依赖其他 dylib，所以 dyld 所需要加载的是动态库列表一个递归依赖的集合。一般应用会加载 100 到 400 个 dylib 文件，但大部分都是系统 dylib，它们会被预先计算和缓存起来，加载速度很快。</p>
+<h4 id="Fix-ups"><a href="#Fix-ups" class="headerlink" title="Fix-ups"></a>Fix-ups</h4><p>在加载所有的动态链接库之后，它们只是处在相互独立的状态，需要将它们绑定起来，这就是 Fix-ups。代码签名使得我们不能修改指令，那样就不能让一个 dylib 的调用另一个 dylib。这时需要加很多间接层。</p>
+<p>现代 code-gen 被叫做动态 PIC（Position Independent Code），意味着代码可以被加载到间接的地址上。当调用发生时，code-gen 实际上会在 __DATA 段中创建一个指向被调用者的指针，然后加载指针并跳转过去。</p>
+<p>所以 dyld 做的事情就是修正（fix-up）指针和数据。Fix-up 有两种类型，rebasing 和 binding。</p>
+<p>Rebasing 和 Binding</p>
+<p>Rebasing：在镜像内部调整指针的指向<br>Binding：将指针指向镜像外部的内容</p>
+<p>可以通过命令行查看 rebase 和 bind 等信息：</p>
+<p>xcrun dyldinfo -rebase -bind -lazy_bind myapp.app&#x2F;myapp</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-a98d4d90003e90f7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="运行结果"></p>
+<p>通过这个命令可以查看所有的 Fix-up。rebase，bind，weak_bind，lazy_bind 都存储在 __LINKEDIT 段中，并可通过 LC_DYLD_INFO_ONLY 查看各种信息的偏移量和大小。</p>
+<p>建议用 MachOView 查看更加方便直观。</p>
+<h4 id="Rebasing"><a href="#Rebasing" class="headerlink" title="Rebasing"></a>Rebasing</h4><p>在过去，会把 dylib 加载到指定地址，所有指针和数据对于代码来说都是对的，dyld 就无需做任何 fix-up 了。如今用了 ASLR 后悔将 dylib 加载到新的随机地址(actual_address)，这个随机的地址跟代码和数据指向的旧地址(preferred_address)会有偏差，dyld 需要修正这个偏差(slide)，做法就是将 dylib 内部的指针地址都加上这个偏移量，偏移量的计算方法如下：</p>
+<p>Slide &#x3D; actual_address - preferred_address</p>
+<p>然后就是重复不断地对 __DATA 段中需要 rebase 的指针加上这个偏移量。这就又涉及到 page fault 和 COW。这可能会产生 I&#x2F;O 瓶颈，但因为 rebase 的顺序是按地址排列的，所以从内核的角度来看这是个有次序的任务，它会预先读入数据，减少 I&#x2F;O 消耗。</p>
+<h4 id="Binding"><a href="#Binding" class="headerlink" title="Binding"></a>Binding</h4><p>Binding 是处理那些指向 dylib 外部的指针，它们实际上被符号（symbol）名称绑定，也就是个字符串。之前提到 __LINKEDIT 段中也存储了需要 bind 的指针，以及指针需要指向的符号。dyld 需要找到 symbol 对应的实现，这需要很多计算，去符号表里查找。找到后会将内容存储到 __DATA 段中的那个指针中。Binding 看起来计算量比 Rebasing 更大，但其实需要的 I&#x2F;O 操作很少，因为之前 Rebasing 已经替 Binding 做过了。</p>
+<h4 id="ObjC-Runtime"><a href="#ObjC-Runtime" class="headerlink" title="ObjC Runtime"></a>ObjC Runtime</h4><p>Objective-C 中有很多数据结构都是靠 Rebasing 和 Binding 来修正（fix-up）的，比如 Class 中指向超类的指针和指向方法的指针。</p>
+<p>ObjC 是个动态语言，可以用类的名字来实例化一个类的对象。这意味着 ObjC Runtime 需要维护一张映射类名与类的全局表。当加载一个 dylib 时，其定义的所有的类都需要被注册到这个全局表中。</p>
+<p>C++ 中有个问题叫做易碎的基类（fragile base class）。ObjC 就没有这个问题，因为会在加载时通过 fix-up 动态类中改变实例变量的偏移量。</p>
+<p>在 ObjC 中可以通过定义类别（Category）的方式改变一个类的方法。有时你想要添加方法的类在另一个 dylib 中，而不在你的镜像中（也就是对系统或别人的类动刀），这时也需要做些 fix-up。</p>
+<p>ObjC 中的 selector 必须是唯一的。</p>
+<p>Initializers</p>
+<p>C++ 会为静态创建的对象生成初始化器。而在 ObjC 中有个叫 +load 的方法，然而它被废弃了，现在建议使用 +initialize。对比详见：<br><a target="_blank" rel="noopener" href="http://stackoverflow.com/questions/13326435/nsobject-load-and-initialize-what-do-they-do">http://stackoverflow.com/questions/13326435/nsobject-load-and-initialize-what-do-they-do</a><br>现在有了主执行文件，一堆 dylib，其依赖关系构成了一张巨大的有向图，那么执行初始化器的顺序是什么？自顶向上！按照依赖关系，先加载叶子节点，然后逐步向上加载中间节点，直至最后加载根节点。这种加载顺序确保了安全性，加载某个 dylib 前，其所依赖的其余 dylib 文件肯定已经被预先加载。</p>
+<p>最后 dyld 会调用 main() 函数。main() 会调用 UIApplicationMain()。</p>
+<h4 id="改善启动时间"><a href="#改善启动时间" class="headerlink" title="改善启动时间"></a>改善启动时间</h4><p>从点击 App 图标到加载 App 闪屏之间会有个动画，我们希望 App 启动速度比这个动画更快。<br>虽然不同设备上 App 启动速度不一样，但启动时间最好控制在 400ms。<br>需要注意的是启动时间一旦超过 20s，系统会认为发生了死循环并杀掉 App 进程。<br>当然启动时间最好以 App 所支持的最低配置设备为准。<br>直到 applicationWillFinishLaunching 被调动，App 才启动结束。</p>
+<h4 id="测量启动时间"><a href="#测量启动时间" class="headerlink" title="测量启动时间"></a>测量启动时间</h4><p>Warm launch: App 和数据已经在内存中<br>Cold launch: App 不在内核缓冲存储器中</p>
+<p>冷启动（Cold launch）耗时才是我们需要测量的重要数据，为了准确测量冷启动耗时，测量前需要重启设备。<br>在 main() 方法执行前测量是很难的，好在 dyld 提供了内建的测量方法：在 Xcode 中 Edit scheme -&gt; Run -&gt; Auguments 将环境变量 DYLD_PRINT_STATISTICS 设为 1。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-0e6dbf1d6d433f7d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="配置-设置"></p>
+<p>控制台输出的内容如下：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-0a3b55f357673010.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="结果"></p>
+<h4 id="优化启动时间"><a href="#优化启动时间" class="headerlink" title="优化启动时间"></a>优化启动时间</h4><p>可以针对 App 启动前的每个步骤进行相应的优化工作。</p>
+<h4 id="加载-Dylib-1"><a href="#加载-Dylib-1" class="headerlink" title="加载 Dylib"></a>加载 Dylib</h4><p>之前提到过加载系统的 dylib 很快，因为有优化。但加载内嵌（embedded）的 dylib 文件很占时间，所以尽可能把多个内嵌 dylib 合并成一个来加载，或者使用 static archive。使用 dlopen() 来在运行时懒加载是不建议的，这么做可能会带来一些问题，并且总的开销更大。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-c545bf3043a2ed04.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="优化前"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-ed2bbf6d5635d4c1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="优化后"></p>
+<h4 id="Rebase-x2F-Binding"><a href="#Rebase-x2F-Binding" class="headerlink" title="Rebase&#x2F;Binding"></a>Rebase&#x2F;Binding</h4><p>之前提过 Rebaing 消耗了大量时间在 I&#x2F;O 上，而在之后的 Binding 就不怎么需要 I&#x2F;O 了，而是将时间耗费在计算上。所以这两个步骤的耗时是混在一起的。</p>
+<p>之前说过可以从查看 __DATA 段中需要修正（fix-up）的指针，所以减少指针数量才会减少这部分工作的耗时。<br>对于 ObjC 来说就是减少 Class,selector 和 category 这些元数据的数量。<br>从编码原则和设计模式之类的理论都会鼓励大家多写精致短小的类和方法，并将每部分方法独立出一个类别，其实这会增加启动时间。<br>对于 C++ 来说需要减少虚方法，因为虚方法会创建 vtable，这也会在 __DATA 段中创建结构。<br>虽然 C++ 虚方法对启动耗时的增加要比 ObjC 元数据要少，但依然不可忽视。<br>最后推荐使用 Swift 结构体，它需要 fix-up 的内容较少。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-3772b724dd5ce95b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="优化前"></p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-6330a60ad129f685.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="优化后"></p>
+<h4 id="ObjC-Setup"><a href="#ObjC-Setup" class="headerlink" title="ObjC Setup"></a>ObjC Setup</h4><p>针对这步所能事情很少，几乎都靠 Rebasing 和 Binding 步骤中减少所需 fix-up 内容。因为前面的工作也会使得这步耗时减少。</p>
+<h4 id="Initializer"><a href="#Initializer" class="headerlink" title="Initializer"></a>Initializer</h4><p>显式初始化</p>
+<p>使用 +initialize 来替代 +load</p>
+<p>不要使用 <strong>atribute</strong>((constructor)) 将方法显式标记为初始化器，而是让初始化方法调用时才执行。<br>比如使用<br>dispatch_once(),<br>pthread_once() 或<br> std::once()。<br> 也就是在第一次使用时才初始化，推迟了一部分工作耗时。</p>
+<p> 隐式初始化</p>
+<p>对于带有复杂（non-trivial）构造器的 C++ 静态变量：</p>
+<p>在调用的地方使用初始化器。</p>
+<p>只用简单值类型赋值（POD:Plain Old Data），这样静态链接器会预先计算 __DATA 中的数据，无需再进行 fix-up 工作。</p>
+<p>使用编译器 warning 标志 -Wglobal-constructors 来发现隐式初始化代码。</p>
+<p>使用 Swift 重写代码，因为 Swift 已经预先处理好了，强力推荐。</p>
+<p>**不要在初始化方法中调用 dlopen()**，对性能有影响。因为 dyld 在 App 开始前运行，由于此时是单线程运行所以系统会取消加锁，但 dlopen() 开启了多线程，系统不得不加锁，这就严重影响了性能，还可能会造成死锁以及产生未知的后果。所以也不要在初始化器中创建线程。</p>
+<p>相关链接</p>
+<p> Optimizing App Startup Time<br><a target="_blank" rel="noopener" href="https://developer.apple.com/videos/play/wwdc2016/406/">https://developer.apple.com/videos/play/wwdc2016/406/</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2017/05/08/20170508/" rel="prev" title="iOS 录音，播放 tips">
+      <i class="fa fa-chevron-left"></i> iOS 录音，播放 tips
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2017/09/04/20170904/" rel="next" title="Jenkins iOS打包证书问题">
+      Jenkins iOS打包证书问题 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#APP%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">APP启动时间优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#App-%E8%BF%90%E8%A1%8C%E7%90%86%E8%AE%BA"><span class="nav-number">1.1.</span> <span class="nav-text">App 运行理论</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%90%86%E8%AE%BA"><span class="nav-number">1.1.1.</span> <span class="nav-text">理论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mach-O-Image-File"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">Mach-O Image File</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mach-O-Universal-Files"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">Mach-O Universal Files</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%99%9A%E6%8B%9F%E5%86%85%E5%AD%98"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">虚拟内存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mach-O-%E9%95%9C%E5%83%8F-%E5%8A%A0%E8%BD%BD"><span class="nav-number">1.1.1.4.</span> <span class="nav-text">Mach-O 镜像 加载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%85%A8"><span class="nav-number">1.1.1.5.</span> <span class="nav-text">安全</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%8E-exec-%E5%88%B0-main"><span class="nav-number">1.1.1.6.</span> <span class="nav-text">从 exec() 到 main()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dyld-%E5%8A%A0%E8%BD%BD-dylib-%E6%96%87%E4%BB%B6"><span class="nav-number">1.1.1.7.</span> <span class="nav-text">dyld 加载 dylib 文件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD-Dylib"><span class="nav-number">1.1.1.8.</span> <span class="nav-text">加载 Dylib</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Fix-ups"><span class="nav-number">1.1.1.9.</span> <span class="nav-text">Fix-ups</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rebasing"><span class="nav-number">1.1.1.10.</span> <span class="nav-text">Rebasing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Binding"><span class="nav-number">1.1.1.11.</span> <span class="nav-text">Binding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ObjC-Runtime"><span class="nav-number">1.1.1.12.</span> <span class="nav-text">ObjC Runtime</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%94%B9%E5%96%84%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4"><span class="nav-number">1.1.1.13.</span> <span class="nav-text">改善启动时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B5%8B%E9%87%8F%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4"><span class="nav-number">1.1.1.14.</span> <span class="nav-text">测量启动时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E5%90%AF%E5%8A%A8%E6%97%B6%E9%97%B4"><span class="nav-number">1.1.1.15.</span> <span class="nav-text">优化启动时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD-Dylib-1"><span class="nav-number">1.1.1.16.</span> <span class="nav-text">加载 Dylib</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Rebase-x2F-Binding"><span class="nav-number">1.1.1.17.</span> <span class="nav-text">Rebase&#x2F;Binding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ObjC-Setup"><span class="nav-number">1.1.1.18.</span> <span class="nav-text">ObjC Setup</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Initializer"><span class="nav-number">1.1.1.19.</span> <span class="nav-text">Initializer</span></a></li></ol></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="neal"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">neal</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:nealsherlock@gmail.com" title="E-Mail → mailto:nealsherlock@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">neal</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

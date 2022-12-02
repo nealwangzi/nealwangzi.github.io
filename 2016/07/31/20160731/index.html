@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"nealwangzi.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="WWDC2016-Xcode 8 AutoLayout 新特性目录 Incrementally Adopting Auto Layout Design And Runtime Constraints NSGridView  Layout Feedback Loop Debugging  一、Incrementally Adopting Auto Layout简单说，目前大部分在IB中布局控件时，一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WWDC16 Xcode 8 AutoLayout 新特性">
+<meta property="og:url" content="https://nealwangzi.github.io/2016/07/31/20160731/index.html">
+<meta property="og:site_name" content="安东尼的博客">
+<meta property="og:description" content="WWDC2016-Xcode 8 AutoLayout 新特性目录 Incrementally Adopting Auto Layout Design And Runtime Constraints NSGridView  Layout Feedback Loop Debugging  一、Incrementally Adopting Auto Layout简单说，目前大部分在IB中布局控件时，一">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-e16b290c3ca0220c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-197f0cfad94fc5b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-8f1a18eb603fa5f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-2b0d6fff7a470635.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/425102-b1b1b0f8156b3f20.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2016-07-31T07:56:10.000Z">
+<meta property="article:modified_time" content="2018-06-06T08:04:12.000Z">
+<meta property="article:author" content="neal">
+<meta property="article:tag" content="日常,分享">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/425102-e16b290c3ca0220c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+
+<link rel="canonical" href="https://nealwangzi.github.io/2016/07/31/20160731/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>WWDC16 Xcode 8 AutoLayout 新特性 | 安东尼的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">安东尼的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2016/07/31/20160731/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          WWDC16 Xcode 8 AutoLayout 新特性
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-07-31 15:56:10" itemprop="dateCreated datePublished" datetime="2016-07-31T15:56:10+08:00">2016-07-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2018-06-06 16:04:12" itemprop="dateModified" datetime="2018-06-06T16:04:12+08:00">2018-06-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="WWDC2016-Xcode-8-AutoLayout-新特性"><a href="#WWDC2016-Xcode-8-AutoLayout-新特性" class="headerlink" title="WWDC2016-Xcode 8 AutoLayout 新特性"></a>WWDC2016-Xcode 8 AutoLayout 新特性</h2><h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
+<li>Incrementally Adopting Auto Layout</li>
+<li>Design And Runtime Constraints</li>
+<li>NSGridView </li>
+<li>Layout Feedback Loop Debugging</li>
+</ul>
+<h3 id="一、Incrementally-Adopting-Auto-Layout"><a href="#一、Incrementally-Adopting-Auto-Layout" class="headerlink" title="一、Incrementally Adopting Auto Layout"></a>一、Incrementally Adopting Auto Layout</h3><p>简单说，目前大部分在IB中布局控件时，一般都是将约束一次性约束完整，避免出现约束警告等错误。在Xcode8中，我们可以不一次性添加好所有的约束，可以一步步将约束完善。</p>
+<p>为什么会有这样的需求呢？可以先看下背景来源。<br>例子：当我吧一个view 放置在父view上面时，不加任何约束的情况下，如下图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-e16b290c3ca0220c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160731_1.png"></p>
+<p>开上去比较正常。但是当我把设备旋转90°时，就会发现如下图：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-197f0cfad94fc5b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160731_2.png"></p>
+<p>此时可以看到，这个view的位置保持与原来一样，并且我们没有设置约束，这是怎么做到的呢？其实，在程序编译时，autolayout会自动隐式的给view 加上相关的约束，保证view的大小不会发生变化。这个view的就被加上的相应的约束。但是我们是并不希望view 超出屏幕之外。我们需要让view随着屏幕旋转二自适应位置的变化。</p>
+<p>有没有一种不需要要用约束就可以简单的实现，resize布局呢？</p>
+<p>我们可以使用autoresizing masks简单布局。这个是在autolayout之前就出现的布局UI的方式。这是一种Springs &amp; Struts的UI。我们可以设定边缘约束(注：<code>这里的约束并不是指的是Autolayout里面的constraints，是autoresizing masks里面的规则</code>)，无论View的长宽如何变化，这些View都会跟随着设置了约束的view一起变化。</p>
+<p>那实现原理又是什么呢？ 可以看到xocde8是先取出autoresizing masks，然后在<code>runtime</code>时候将其转换成相应的constraints，最终就会直接显示。</p>
+<p><code>可以给view 设置 translatesAutoresizingMaskIntoConstraints属性即可。 </code><br>在autolayout之后，我们约束view就更加方便了，勾选autolayout之后，autoresizing masks 默认就不会出现了。</p>
+<p>那么在Xcode8中，我们可以对view 进行增量更新约束，即可以先用AutoresizingMask做简单的布局，之后通过约束进行更改。简而概之，Xcode 8 Autolayout ≈ AutoresizingMask + Autolayout 。</p>
+<p>在xcode8  storyboard也进行了更新变化。可以明显看到，在用IB布局界面是可以全设备调整布局情况，这对没有那么多设备的开发者来说是极大的福音啊。</p>
+<p>通过简单地布局示例，可以看到我们同过不同屏幕，不同尺寸布局一个界面，更加方便。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-8f1a18eb603fa5f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160731_4.png"></p>
+<p>这就是Xcode 8 的Incrementally Adopting Auto Layout，Autoresizing masks + Auto Layout Constraint 一起协同工作！</p>
+<h3 id="Design-and-Runtime-Constraints"><a href="#Design-and-Runtime-Constraints" class="headerlink" title="Design and Runtime Constraints"></a>Design and Runtime Constraints</h3><p>在我们开发中，大部分都会遇到这样一种情况，view的约束需要在回去数据中才能明确，所以在app运行时，我们无法知道全部的约束情况。<br>目前有三种方法来应对以上问题。</p>
+<ul>
+<li><p>1.Placeholder Constraints<br>在布局一张图片的时候，我们需要预估下突变的宽高比例。假设我们设置为4：3，此时我们给图片加上约束，记住<code>勾选“place order constraint”</code>，这个约束会在build time的时候被移除。当我们运行时拿到图片之后，可以给他加上适当的约束和宽高比即可。</p>
+</li>
+<li><p>2.Intrinsic Content Size<br>有时候会自定义一些UIView或者NSView，这些View里面的content是动态的。Interface Builder并不会运行我们的代码，所以不到app运行的时候我们并不知道里面的大小。我们可以给它设置一个内在的content的大小。</p>
+</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-2b0d6fff7a470635.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160731_5.png"></p>
+<p><code>Setting a design time intrinsic content size only affects a view while editing in Interface Builder.The view will not have this intrinsic content size at runtime.</code></p>
+<p>注意: 上面的说明intrinsic content size仅仅相当于是在布局的时候一个placeholder，在运行时这个size就没有了。所以如果开发过程中真的需要用到这个内在的content的大小，那么我们需要overriding的content size</p>
+<ul>
+<li>3.Turn Off Ambiguity Per View<br>这个是Xcode 8的一个新特性。当上述2种方法都无法解决我们的需求的时候。这个时候就需要用到这种方法了。Xcode 8给了我们可以在constraints产生歧义的时候，可以动态调整警告级别的能力。<br>在这个场景中，我们仅仅只知道我们需要把这个imageView放在水平位置的中央，但是imageView的大小和它的水平位置我们并不知道。如果我们仅仅只加上了这一个约束的话，Interface Builder就会报红，因为IB这时候根据我们给的constraints，并不能唯一确定当前的view的位置。</li>
+</ul>
+<p>如果我们在之后的运行时，拿到图片的完整信息之后，我们自己知道该如何去加constraints，我们知道该如何去排版保证imageView能唯一确定位置的时候，这时我们可以关掉IB的红色警告。找到“Ambiguous”，这里是警告的级别，我们这里选择“Never Verify”，这时就没有红色的警告和错误提醒了。但是选择这一项的前提是，我们能保证之后运行时我们可以加上足够的constraints保证view的位置信息完整。</p>
+<p>以上3种方法就是我们在运行时给view增加constraints的解决办法。</p>
+<h3 id="三-NSGridView"><a href="#三-NSGridView" class="headerlink" title="三.NSGridView"></a>三.NSGridView</h3><p>这是macOS给我们带来的一个新的layout容器。</p>
+<p>有时候我们为了维护constraints的正确性是件比较麻烦的事情，比如即使我们就是一组简单的checkboxes，维护constraints也不容易。这个时候我们会选择用stack view来让我们开发更容易一些。</p>
+<h3 id="四-Layout-Feedback-Loop-Debugging"><a href="#四-Layout-Feedback-Loop-Debugging" class="headerlink" title="四.Layout Feedback Loop Debugging"></a>四.Layout Feedback Loop Debugging</h3><p>有时候我们设置好了constraint之后，没有报任何错误，但是有些情况当我们运行起来的时候就有一堆constraint冲突在debug窗口里面，严重的还会使app直接崩溃。崩溃的情况就是遇到了layout feedback loop。</p>
+<p>遇到这种情况，往往是发生在“过渡期”，开始或者结束的时候。如果说你点击了一个button，button相应了你的点击，但是之后button不弹起，一直保持着被按下的状态。</p>
+<p>这些信息确实很难收集，这也是为何苹果要为我们专门开发这样一个工具，方便我们来调试，查找问题的原因。</p>
+<p>开启这个工具的开关在“Arguments”选项里面。如下图。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UIViewLayoutFeedbackLoopDebuggingThreshold 100 // 50...1000</span><br><span class="line">-NSViewLayoutFeedbackLoopDebuggingThreshold 100 // 50...1000</span><br><span class="line">// Logs to com.apple.UIKit:LayoutLoop or com.apple.AppKit:LayoutLoop</span><br></pre></td></tr></table></figure>
+
+<p>我们也可以打全局的异常断点<code>exception break point</code>。<br>在调试窗口也可以用LLDB命令po出一些调试信息。</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/425102-b1b1b0f8156b3f20.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160731_6.png"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这个Xcode 8 给我们的Autolayout融合了之前Autoresizing masks的用法，使两个合并在一起使用，这样不同场景我们可以有更多的选择，可以更加灵活的处理布局的问题。还允许我们能手动调节constraints警告优先级别。</p>
+<p>针对macOS的布局问题，又给我们带来了新的控件NSGridView</p>
+<p>最后给我们带来的新的调试Layout Feedback Loop Debugging的工具，能让我们平时调试起来比较头疼的问题，有了工具可以有据可循，迅速定位问题，查找问题。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2016/07/19/20160719/" rel="prev" title="WWDC16 Core Location 最佳实践">
+      <i class="fa fa-chevron-left"></i> WWDC16 Core Location 最佳实践
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2016/08/12/20160812/" rel="next" title="WWDC16 Health and Fitness with Core Motion">
+      WWDC16 Health and Fitness with Core Motion <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#WWDC2016-Xcode-8-AutoLayout-%E6%96%B0%E7%89%B9%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">WWDC2016-Xcode 8 AutoLayout 新特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E5%BD%95"><span class="nav-number">1.1.</span> <span class="nav-text">目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81Incrementally-Adopting-Auto-Layout"><span class="nav-number">1.2.</span> <span class="nav-text">一、Incrementally Adopting Auto Layout</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Design-and-Runtime-Constraints"><span class="nav-number">1.3.</span> <span class="nav-text">Design and Runtime Constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89-NSGridView"><span class="nav-number">1.4.</span> <span class="nav-text">三.NSGridView</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B-Layout-Feedback-Loop-Debugging"><span class="nav-number">1.5.</span> <span class="nav-text">四.Layout Feedback Loop Debugging</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">1.6.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="neal"
+      src="/images/avatar.jpeg">
+  <p class="site-author-name" itemprop="name">neal</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="mailto:nealsherlock@gmail.com" title="E-Mail → mailto:nealsherlock@gmail.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2019 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">neal</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
