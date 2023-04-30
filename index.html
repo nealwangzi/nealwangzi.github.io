@@ -151,6 +151,94 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2023/04/30/Java-NIO-%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/04/30/Java-NIO-%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">Java NIO 使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-04-30 12:06:14 / 修改时间：12:20:45" itemprop="dateCreated datePublished" datetime="2023-04-30T12:06:14+08:00">2023-04-30</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Java-NIO-使用"><a href="#Java-NIO-使用" class="headerlink" title="Java NIO 使用"></a>Java NIO 使用</h1><h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>Java NIO（New I&#x2F;O）是Java SE 1.4中引入的一组API，用于处理I&#x2F;O操作。与传统的Java I&#x2F;O API相比，NIO提供了更好的可扩展性和更高的性能。</p>
+<p>在传统的Java I&#x2F;O API中，I&#x2F;O操作是通过流（Stream）进行的，即从InputStream或OutputStream中读取或写入数据。流模型很简单，但有些限制。例如，流只能从一个方向读取数据，而无法随意“倒回”流以重新读取数据。此外，流处理适用于小数据量，但对于大数据量的处理效率较低。</p>
+<p>Java NIO API的设计目标是提供高效的I&#x2F;O操作，以满足不断增长的数据处理需求。NIO引入了Buffer、Channel、Selector等概念。</p>
+<p>Buffer是一个对象，用于存储数据。可以将数据写入Buffer，也可以从Buffer中读取数据。Buffer提供了一些方法，使得可以通过内部指针访问Buffer中的数据。</p>
+<p>Channel是数据的源或目标，例如文件或网络连接。Channel类似于流，但与流不同的是，可以同时在Channel中进行读写操作。此外，Channel比流更快，并且可以异步地读取或写入数据。</p>
+<p>Selector是一种轮询机制，用于选择可以进行I&#x2F;O操作的Channel。通过Selector，可以将单个线程监视多个Channel的I&#x2F;O事件。这样可以将线程数量减少到一两个，从而提高系统性能。</p>
+<p>NIO提供了一组文件I&#x2F;O操作的API，称为NIO.2，也称为Java NIO.2或Java 7 NIO。</p>
+<p>总之，Java NIO提供了更高效、更灵活的I&#x2F;O操作API，适用于需要处理大量数据或需要实时处理数据的场景。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NIO.2的官方文档可以在以下地址找到：</span><br><span class="line"></span><br><span class="line">https://docs.oracle.com/javase/tutorial/essential/io/fileio.html</span><br><span class="line"></span><br><span class="line">此外，Oracle官方提供了一份更为详细的API文档：</span><br><span class="line"></span><br><span class="line">https://docs.oracle.com/javase/8/docs/api/java/nio/file/package-summary.html</span><br><span class="line"></span><br><span class="line">这些文档提供了NIO.2的详细说明、示例和API参考，可以帮助开发者更好地了解和使用NIO.2。</span><br></pre></td></tr></table></figure>
+
+<p>NIO.2是Java SE 7中引入的一组API，用于文件I&#x2F;O操作和文件系统操作。它建立在NIO的基础之上，提供了更多的功能和更高效的性能。</p>
+<p>Java NIO.2引入了一个新的文件操作API，其中的核心类是java.nio.file包中的类。java.nio.file包提供了一个面向对象的、跨平台的文件系统API，包括文件的创建、删除、复制、移动、读写等操作，以及获取文件属性、文件系统的遍历、文件系统监控等功能。</p>
+<p>Java NIO.2中最重要的文件操作类是Path和Files，它们提供了许多常用的文件操作方法。</p>
+<p>Path类代表文件系统中的一个路径。可以通过Path对象访问文件系统中的文件和目录。Path对象提供了很多方法，例如获取路径的父路径、文件名、文件扩展名、规范路径等等。Path对象还可以用于创建、删除、移动和复制文件和目录，以及进行文件IO操作。</p>
+<p>Files类是java.nio.file包中最重要的类之一，它提供了许多静态方法，用于对文件和目录进行操作。例如，Files.exists()用于检查文件或目录是否存在，Files.createFile()用于创建文件，Files.createDirectory()用于创建目录，Files.copy()用于复制文件或目录，Files.move()用于移动文件或目录，Files.delete()用于删除文件或目录等等。</p>
+<p>另外，java.nio.file包中还有一些其他的类和接口，例如FileVisitor接口，可以用于遍历文件系统中的所有文件和目录；WatchService接口，可以用于监控文件系统中的文件和目录的变化；LinkOption类，可以用于设置链接选项等等。</p>
+<p>总之，java.nio.file包提供了一组功能丰富、易于使用的文件系统API，支持访问本地文件系统和远程文件系统，以及对文件和目录进行创建、删除、复制、移动、读写等操作。它的使用方式与传统的Java IO API有很大的不同，提供了更加灵活和方便的文件操作方式，使Java开发者能够更加方便地访问和操作文件系统。<br>使用NIO.2进行文件I&#x2F;O操作的步骤如下：</p>
+<ol>
+<li><p>获取文件系统对象：通过FileSystems.getDefault()方法获取文件系统对象。</p>
+</li>
+<li><p>创建Path对象：通过Path类创建文件路径对象，可以是文件名或目录名。</p>
+</li>
+<li><p>执行文件操作：通过Files类的静态方法执行文件操作，例如读取文件、写入文件、创建目录等。</p>
+</li>
+</ol>
+<p>以下是一个简单的示例，展示了如何使用NIO.2读取文件内容并输出到控制台：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import java.io.IOException;</span><br><span class="line">import java.nio.charset.StandardCharsets;</span><br><span class="line">import java.nio.file.Files;</span><br><span class="line">import java.nio.file.Path;</span><br><span class="line">import java.nio.file.Paths;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">public class ReadFileExample &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        // 获取文件路径</span><br><span class="line">        Path path = Paths.get(&quot;myfile.txt&quot;);</span><br><span class="line"></span><br><span class="line">        // 读取文件内容</span><br><span class="line">        List&lt;String&gt; lines = Files.readAllLines(path, StandardCharsets.UTF_8);</span><br><span class="line"></span><br><span class="line">        // 输出文件内容</span><br><span class="line">        for (String line : lines) &#123;</span><br><span class="line">            System.out.println(line);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在此示例中，首先使用Paths.get()方法创建一个Path对象，指定要读取的文件名。然后使用Files.readAllLines()方法读取文件内容，并将其存储在List<String>对象中。最后，使用for循环输出文件内容。</p>
+<p>除了读取文件，NIO.2还提供了许多其他的文件操作方法，例如写入文件、复制文件、移动文件、删除文件等。要了解更多NIO.2的信息，可以参考官方文档。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2022/11/28/Java-%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1049,135 +1137,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2018/05/22/%E5%88%A9%E7%94%A8vps%E6%90%AD%E5%BB%BAblog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="neal">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安东尼的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/05/22/%E5%88%A9%E7%94%A8vps%E6%90%AD%E5%BB%BAblog/" class="post-title-link" itemprop="url">利用vps搭建blog</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2018-05-22 18:50:00 / 修改时间：20:21:26" itemprop="dateCreated datePublished" datetime="2018-05-22T18:50:00+08:00">2018-05-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>闲置的vps，正好能排上用场。今天就尝试搭建自己的博客。记录下生活点滴也好。</p>
-<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前一直想搭建blog，最近有点时间。正好有vps闲置，就购买了域名，来建个博客。</p>
-<p>根据网上的攻略，一步步走下来，还是蛮开心的。hexo的页面风格令人眼前一亮。</p>
-<h3 id="大致流程"><a href="#大致流程" class="headerlink" title="大致流程"></a>大致流程</h3><ul>
-<li>1.本地生成静态文件</li>
-<li>2.部署本地文件到服务器vps</li>
-<li>3.使用Nginx做web服务</li>
-<li>4.通过hexo直接进行git部署</li>
-<li>5.即时更新博客，方便快捷</li>
-</ul>
-<h3 id="本地配置（Mac为例）"><a href="#本地配置（Mac为例）" class="headerlink" title="本地配置（Mac为例）"></a>本地配置（Mac为例）</h3><ul>
-<li><p>1.node.js 安装</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>2.git 安装<br>Mac：使用 Homebrew, MacPorts ：brew install git;或下载 安装程序 安装。<br>Mac如装有Xcode ，自带git。<br>git进行简单的全局配置。设置邮箱和用户名。最后生成ssh密钥。<br>记得拷贝id_rsa.pub 公钥</p>
-</li>
-<li><p>3.在本地根目录建立blog根目录</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">mkdir</span> blog <span class="comment"># blog 根目录文件名</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-<li><p>4.hexo 安装</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br><span class="line">hexo d -<span class="built_in">fg</span></span><br><span class="line">hexo serve</span><br></pre></td></tr></table></figure></li>
-<li><p>5.预览<br>打开 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 即可看到你的站点</p>
-</li>
-<li><p>6.在服务器配置成功后，配置hexo<br>位于<em>hexo</em>文件夹下, <em>_config.yml</em> ,修改 <em>deploy</em> 选项</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: git@vps的ip地址或域名:hexo.git</span><br><span class="line">branch: master</span><br><span class="line">message: update</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li><p>7.生成blog</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd blog </span><br><span class="line">hexo g </span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-<p>一切正常就推送成功了！<br>至此，博客搭建完成。</p>
-</li>
-<li><p>8.更新博客（待完善）</p>
-</li>
-</ul>
-<h3 id="服务器配置（Ubuntu为例）"><a href="#服务器配置（Ubuntu为例）" class="headerlink" title="服务器配置（Ubuntu为例）"></a>服务器配置（Ubuntu为例）</h3><p>1.Nginx安装</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>启动Nginx</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/nginx start</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>2.git 安装</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install git </span><br></pre></td></tr></table></figure>
-<p>安装完成，确认安装</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
-
-<p>3.新建git用户 添加权限</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adduser git</span><br><span class="line">chmod 740 /etc/sudoers</span><br><span class="line">vim /etc/sudoers</span><br></pre></td></tr></table></figure>
-<p>编辑页面中找到</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># User privilege specification</span><br><span class="line">root    ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
-<p>添加</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git   ALL=(ALL)     ALL</span><br></pre></td></tr></table></figure>
-<p>保存并退出后</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 440 /etc/sudoers</span><br></pre></td></tr></table></figure>
-<p>创建Git仓库，配置ssh登陆（authorized_keys    &#x2F;&#x2F;在这个文件中粘贴进刚刚申请的key（在id_rsa.pub文件中））</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">su git</span><br><span class="line">cd ~</span><br><span class="line">mkdir .ssh &amp;&amp; cd .ssh</span><br><span class="line">touch authorized_keys</span><br><span class="line">vi authorized_keys </span><br><span class="line">cd ~ </span><br><span class="line">mkdir hexo.git &amp;&amp; cd hexo.git</span><br><span class="line">git init --bare</span><br></pre></td></tr></table></figure>
-<p>测试一下，如果在本地 <em><mark>shell</mark></em> 中输入 <em><mark>ssh git@VPS的IP地址</mark></em>,能够远程登录的话，则表示设置成功了。</p>
-<p>4.创建blog目录，并给与git网站所有权</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /var/www</span><br><span class="line">mkdir hexo</span><br><span class="line">chown git:git -R /var/www/hexo</span><br></pre></td></tr></table></figure>
-
-<p>5.配置git hooks</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">su git</span><br><span class="line">cd /home/git/hexo.git/hooks</span><br><span class="line">vim post-receive</span><br></pre></td></tr></table></figure>
-<p>加入以下内容</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">GIT_REPO=/home/git/hexo.git #git仓库</span><br><span class="line">TMP_GIT_CLONE=/tmp/hexo</span><br><span class="line">PUBLIC_WWW=/var/www/hexo #网站目录</span><br><span class="line">rm -rf $&#123;TMP_GIT_CLONE&#125;</span><br><span class="line">git clone $GIT_REPO $TMP_GIT_CLONE</span><br><span class="line">rm -rf $&#123;PUBLIC_WWW&#125;/*</span><br><span class="line">cp -rf $&#123;TMP_GIT_CLONE&#125;/* $&#123;PUBLIC_WWW&#125;</span><br></pre></td></tr></table></figure>
-<p>赋予脚本的执行权限</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x post-receive</span><br></pre></td></tr></table></figure>
-
-<p>6.配置Nginx</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/conf.d/hexo.conf</span><br><span class="line"></span><br><span class="line">插入如下代码：</span><br><span class="line">server &#123;</span><br><span class="line">listen         80 ;</span><br><span class="line">root /var/www/hexo;</span><br><span class="line">server_name example.com www.example.com;//注意：这里输入你的域名或IP地址</span><br><span class="line">access_log  /var/log/nginx/hexo_access.log;</span><br><span class="line">error_log   /var/log/nginx/hexo_error.log;</span><br><span class="line">location ~* ^.+\.(ico|gif|jpg|jpeg|png)$ &#123;</span><br><span class="line">root /var/www/hexo;</span><br><span class="line">access_log   off;</span><br><span class="line">expires      1d;</span><br><span class="line">&#125;</span><br><span class="line">location ~* ^.+\.(css|js|txt|xml|swf|wav)$ &#123;</span><br><span class="line">root /var/www/hexo;</span><br><span class="line">access_log   off;</span><br><span class="line">expires      10m;</span><br><span class="line">&#125;</span><br><span class="line">location / &#123;</span><br><span class="line">root /var/www/hexo;</span><br><span class="line">if (-f $request_filename) &#123;</span><br><span class="line">rewrite ^/(.*)$  /$1 break;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>7.重启Nginx</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/nginx restart</span><br></pre></td></tr></table></figure>
-
-
-<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>1.<a target="_blank" rel="noopener" href="https://tiktoking.github.io/2016/01/26/hexo/">https://tiktoking.github.io/2016/01/26/hexo/</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1249,7 +1208,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1293,7 +1252,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

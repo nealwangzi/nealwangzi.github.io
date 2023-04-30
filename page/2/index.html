@@ -151,6 +151,135 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2018/05/22/%E5%88%A9%E7%94%A8vps%E6%90%AD%E5%BB%BAblog/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+      <meta itemprop="name" content="neal">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="安东尼的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/05/22/%E5%88%A9%E7%94%A8vps%E6%90%AD%E5%BB%BAblog/" class="post-title-link" itemprop="url">利用vps搭建blog</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2018-05-22 18:50:00 / 修改时间：20:21:26" itemprop="dateCreated datePublished" datetime="2018-05-22T18:50:00+08:00">2018-05-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>闲置的vps，正好能排上用场。今天就尝试搭建自己的博客。记录下生活点滴也好。</p>
+<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>之前一直想搭建blog，最近有点时间。正好有vps闲置，就购买了域名，来建个博客。</p>
+<p>根据网上的攻略，一步步走下来，还是蛮开心的。hexo的页面风格令人眼前一亮。</p>
+<h3 id="大致流程"><a href="#大致流程" class="headerlink" title="大致流程"></a>大致流程</h3><ul>
+<li>1.本地生成静态文件</li>
+<li>2.部署本地文件到服务器vps</li>
+<li>3.使用Nginx做web服务</li>
+<li>4.通过hexo直接进行git部署</li>
+<li>5.即时更新博客，方便快捷</li>
+</ul>
+<h3 id="本地配置（Mac为例）"><a href="#本地配置（Mac为例）" class="headerlink" title="本地配置（Mac为例）"></a>本地配置（Mac为例）</h3><ul>
+<li><p>1.node.js 安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install node</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>2.git 安装<br>Mac：使用 Homebrew, MacPorts ：brew install git;或下载 安装程序 安装。<br>Mac如装有Xcode ，自带git。<br>git进行简单的全局配置。设置邮箱和用户名。最后生成ssh密钥。<br>记得拷贝id_rsa.pub 公钥</p>
+</li>
+<li><p>3.在本地根目录建立blog根目录</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">mkdir</span> blog <span class="comment"># blog 根目录文件名</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>4.hexo 安装</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br><span class="line">hexo init</span><br><span class="line">npm install</span><br><span class="line">hexo d -<span class="built_in">fg</span></span><br><span class="line">hexo serve</span><br></pre></td></tr></table></figure></li>
+<li><p>5.预览<br>打开 <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000</a> 即可看到你的站点</p>
+</li>
+<li><p>6.在服务器配置成功后，配置hexo<br>位于<em>hexo</em>文件夹下, <em>_config.yml</em> ,修改 <em>deploy</em> 选项</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">type: git</span><br><span class="line">repo: git@vps的ip地址或域名:hexo.git</span><br><span class="line">branch: master</span><br><span class="line">message: update</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+<li><p>7.生成blog</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd blog </span><br><span class="line">hexo g </span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+<p>一切正常就推送成功了！<br>至此，博客搭建完成。</p>
+</li>
+<li><p>8.更新博客（待完善）</p>
+</li>
+</ul>
+<h3 id="服务器配置（Ubuntu为例）"><a href="#服务器配置（Ubuntu为例）" class="headerlink" title="服务器配置（Ubuntu为例）"></a>服务器配置（Ubuntu为例）</h3><p>1.Nginx安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>启动Nginx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/nginx start</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>2.git 安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install git </span><br></pre></td></tr></table></figure>
+<p>安装完成，确认安装</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
+
+<p>3.新建git用户 添加权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">adduser git</span><br><span class="line">chmod 740 /etc/sudoers</span><br><span class="line">vim /etc/sudoers</span><br></pre></td></tr></table></figure>
+<p>编辑页面中找到</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># User privilege specification</span><br><span class="line">root    ALL=(ALL:ALL) ALL</span><br></pre></td></tr></table></figure>
+<p>添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git   ALL=(ALL)     ALL</span><br></pre></td></tr></table></figure>
+<p>保存并退出后</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod 440 /etc/sudoers</span><br></pre></td></tr></table></figure>
+<p>创建Git仓库，配置ssh登陆（authorized_keys    &#x2F;&#x2F;在这个文件中粘贴进刚刚申请的key（在id_rsa.pub文件中））</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">su git</span><br><span class="line">cd ~</span><br><span class="line">mkdir .ssh &amp;&amp; cd .ssh</span><br><span class="line">touch authorized_keys</span><br><span class="line">vi authorized_keys </span><br><span class="line">cd ~ </span><br><span class="line">mkdir hexo.git &amp;&amp; cd hexo.git</span><br><span class="line">git init --bare</span><br></pre></td></tr></table></figure>
+<p>测试一下，如果在本地 <em><mark>shell</mark></em> 中输入 <em><mark>ssh git@VPS的IP地址</mark></em>,能够远程登录的话，则表示设置成功了。</p>
+<p>4.创建blog目录，并给与git网站所有权</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd /var/www</span><br><span class="line">mkdir hexo</span><br><span class="line">chown git:git -R /var/www/hexo</span><br></pre></td></tr></table></figure>
+
+<p>5.配置git hooks</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">su git</span><br><span class="line">cd /home/git/hexo.git/hooks</span><br><span class="line">vim post-receive</span><br></pre></td></tr></table></figure>
+<p>加入以下内容</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">GIT_REPO=/home/git/hexo.git #git仓库</span><br><span class="line">TMP_GIT_CLONE=/tmp/hexo</span><br><span class="line">PUBLIC_WWW=/var/www/hexo #网站目录</span><br><span class="line">rm -rf $&#123;TMP_GIT_CLONE&#125;</span><br><span class="line">git clone $GIT_REPO $TMP_GIT_CLONE</span><br><span class="line">rm -rf $&#123;PUBLIC_WWW&#125;/*</span><br><span class="line">cp -rf $&#123;TMP_GIT_CLONE&#125;/* $&#123;PUBLIC_WWW&#125;</span><br></pre></td></tr></table></figure>
+<p>赋予脚本的执行权限</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x post-receive</span><br></pre></td></tr></table></figure>
+
+<p>6.配置Nginx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/nginx/conf.d/hexo.conf</span><br><span class="line"></span><br><span class="line">插入如下代码：</span><br><span class="line">server &#123;</span><br><span class="line">listen         80 ;</span><br><span class="line">root /var/www/hexo;</span><br><span class="line">server_name example.com www.example.com;//注意：这里输入你的域名或IP地址</span><br><span class="line">access_log  /var/log/nginx/hexo_access.log;</span><br><span class="line">error_log   /var/log/nginx/hexo_error.log;</span><br><span class="line">location ~* ^.+\.(ico|gif|jpg|jpeg|png)$ &#123;</span><br><span class="line">root /var/www/hexo;</span><br><span class="line">access_log   off;</span><br><span class="line">expires      1d;</span><br><span class="line">&#125;</span><br><span class="line">location ~* ^.+\.(css|js|txt|xml|swf|wav)$ &#123;</span><br><span class="line">root /var/www/hexo;</span><br><span class="line">access_log   off;</span><br><span class="line">expires      10m;</span><br><span class="line">&#125;</span><br><span class="line">location / &#123;</span><br><span class="line">root /var/www/hexo;</span><br><span class="line">if (-f $request_filename) &#123;</span><br><span class="line">rewrite ^/(.*)$  /$1 break;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>7.重启Nginx</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/etc/init.d/nginx restart</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><p>1.<a target="_blank" rel="noopener" href="https://tiktoking.github.io/2016/01/26/hexo/">https://tiktoking.github.io/2016/01/26/hexo/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2017/12/22/2017%E5%85%B3%E8%A5%BF%E8%87%AA%E7%94%B1%E8%A1%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1329,128 +1458,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://nealwangzi.github.io/2016/07/31/20160731/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="neal">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="安东尼的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2016/07/31/20160731/" class="post-title-link" itemprop="url">WWDC16 Xcode 8 AutoLayout 新特性</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2016-07-31 15:56:10" itemprop="dateCreated datePublished" datetime="2016-07-31T15:56:10+08:00">2016-07-31</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2018-06-06 16:04:12" itemprop="dateModified" datetime="2018-06-06T16:04:12+08:00">2018-06-06</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/iOS/" itemprop="url" rel="index"><span itemprop="name">iOS</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="WWDC2016-Xcode-8-AutoLayout-新特性"><a href="#WWDC2016-Xcode-8-AutoLayout-新特性" class="headerlink" title="WWDC2016-Xcode 8 AutoLayout 新特性"></a>WWDC2016-Xcode 8 AutoLayout 新特性</h2><h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
-<li>Incrementally Adopting Auto Layout</li>
-<li>Design And Runtime Constraints</li>
-<li>NSGridView </li>
-<li>Layout Feedback Loop Debugging</li>
-</ul>
-<h3 id="一、Incrementally-Adopting-Auto-Layout"><a href="#一、Incrementally-Adopting-Auto-Layout" class="headerlink" title="一、Incrementally Adopting Auto Layout"></a>一、Incrementally Adopting Auto Layout</h3><p>简单说，目前大部分在IB中布局控件时，一般都是将约束一次性约束完整，避免出现约束警告等错误。在Xcode8中，我们可以不一次性添加好所有的约束，可以一步步将约束完善。</p>
-<p>为什么会有这样的需求呢？可以先看下背景来源。<br>例子：当我吧一个view 放置在父view上面时，不加任何约束的情况下，如下图：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/425102-e16b290c3ca0220c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160731_1.png"></p>
-<p>开上去比较正常。但是当我把设备旋转90°时，就会发现如下图：</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/425102-197f0cfad94fc5b2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160731_2.png"></p>
-<p>此时可以看到，这个view的位置保持与原来一样，并且我们没有设置约束，这是怎么做到的呢？其实，在程序编译时，autolayout会自动隐式的给view 加上相关的约束，保证view的大小不会发生变化。这个view的就被加上的相应的约束。但是我们是并不希望view 超出屏幕之外。我们需要让view随着屏幕旋转二自适应位置的变化。</p>
-<p>有没有一种不需要要用约束就可以简单的实现，resize布局呢？</p>
-<p>我们可以使用autoresizing masks简单布局。这个是在autolayout之前就出现的布局UI的方式。这是一种Springs &amp; Struts的UI。我们可以设定边缘约束(注：<code>这里的约束并不是指的是Autolayout里面的constraints，是autoresizing masks里面的规则</code>)，无论View的长宽如何变化，这些View都会跟随着设置了约束的view一起变化。</p>
-<p>那实现原理又是什么呢？ 可以看到xocde8是先取出autoresizing masks，然后在<code>runtime</code>时候将其转换成相应的constraints，最终就会直接显示。</p>
-<p><code>可以给view 设置 translatesAutoresizingMaskIntoConstraints属性即可。 </code><br>在autolayout之后，我们约束view就更加方便了，勾选autolayout之后，autoresizing masks 默认就不会出现了。</p>
-<p>那么在Xcode8中，我们可以对view 进行增量更新约束，即可以先用AutoresizingMask做简单的布局，之后通过约束进行更改。简而概之，Xcode 8 Autolayout ≈ AutoresizingMask + Autolayout 。</p>
-<p>在xcode8  storyboard也进行了更新变化。可以明显看到，在用IB布局界面是可以全设备调整布局情况，这对没有那么多设备的开发者来说是极大的福音啊。</p>
-<p>通过简单地布局示例，可以看到我们同过不同屏幕，不同尺寸布局一个界面，更加方便。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/425102-8f1a18eb603fa5f9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160731_4.png"></p>
-<p>这就是Xcode 8 的Incrementally Adopting Auto Layout，Autoresizing masks + Auto Layout Constraint 一起协同工作！</p>
-<h3 id="Design-and-Runtime-Constraints"><a href="#Design-and-Runtime-Constraints" class="headerlink" title="Design and Runtime Constraints"></a>Design and Runtime Constraints</h3><p>在我们开发中，大部分都会遇到这样一种情况，view的约束需要在回去数据中才能明确，所以在app运行时，我们无法知道全部的约束情况。<br>目前有三种方法来应对以上问题。</p>
-<ul>
-<li><p>1.Placeholder Constraints<br>在布局一张图片的时候，我们需要预估下突变的宽高比例。假设我们设置为4：3，此时我们给图片加上约束，记住<code>勾选“place order constraint”</code>，这个约束会在build time的时候被移除。当我们运行时拿到图片之后，可以给他加上适当的约束和宽高比即可。</p>
-</li>
-<li><p>2.Intrinsic Content Size<br>有时候会自定义一些UIView或者NSView，这些View里面的content是动态的。Interface Builder并不会运行我们的代码，所以不到app运行的时候我们并不知道里面的大小。我们可以给它设置一个内在的content的大小。</p>
-</li>
-</ul>
-<p><img src="http://upload-images.jianshu.io/upload_images/425102-2b0d6fff7a470635.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160731_5.png"></p>
-<p><code>Setting a design time intrinsic content size only affects a view while editing in Interface Builder.The view will not have this intrinsic content size at runtime.</code></p>
-<p>注意: 上面的说明intrinsic content size仅仅相当于是在布局的时候一个placeholder，在运行时这个size就没有了。所以如果开发过程中真的需要用到这个内在的content的大小，那么我们需要overriding的content size</p>
-<ul>
-<li>3.Turn Off Ambiguity Per View<br>这个是Xcode 8的一个新特性。当上述2种方法都无法解决我们的需求的时候。这个时候就需要用到这种方法了。Xcode 8给了我们可以在constraints产生歧义的时候，可以动态调整警告级别的能力。<br>在这个场景中，我们仅仅只知道我们需要把这个imageView放在水平位置的中央，但是imageView的大小和它的水平位置我们并不知道。如果我们仅仅只加上了这一个约束的话，Interface Builder就会报红，因为IB这时候根据我们给的constraints，并不能唯一确定当前的view的位置。</li>
-</ul>
-<p>如果我们在之后的运行时，拿到图片的完整信息之后，我们自己知道该如何去加constraints，我们知道该如何去排版保证imageView能唯一确定位置的时候，这时我们可以关掉IB的红色警告。找到“Ambiguous”，这里是警告的级别，我们这里选择“Never Verify”，这时就没有红色的警告和错误提醒了。但是选择这一项的前提是，我们能保证之后运行时我们可以加上足够的constraints保证view的位置信息完整。</p>
-<p>以上3种方法就是我们在运行时给view增加constraints的解决办法。</p>
-<h3 id="三-NSGridView"><a href="#三-NSGridView" class="headerlink" title="三.NSGridView"></a>三.NSGridView</h3><p>这是macOS给我们带来的一个新的layout容器。</p>
-<p>有时候我们为了维护constraints的正确性是件比较麻烦的事情，比如即使我们就是一组简单的checkboxes，维护constraints也不容易。这个时候我们会选择用stack view来让我们开发更容易一些。</p>
-<h3 id="四-Layout-Feedback-Loop-Debugging"><a href="#四-Layout-Feedback-Loop-Debugging" class="headerlink" title="四.Layout Feedback Loop Debugging"></a>四.Layout Feedback Loop Debugging</h3><p>有时候我们设置好了constraint之后，没有报任何错误，但是有些情况当我们运行起来的时候就有一堆constraint冲突在debug窗口里面，严重的还会使app直接崩溃。崩溃的情况就是遇到了layout feedback loop。</p>
-<p>遇到这种情况，往往是发生在“过渡期”，开始或者结束的时候。如果说你点击了一个button，button相应了你的点击，但是之后button不弹起，一直保持着被按下的状态。</p>
-<p>这些信息确实很难收集，这也是为何苹果要为我们专门开发这样一个工具，方便我们来调试，查找问题的原因。</p>
-<p>开启这个工具的开关在“Arguments”选项里面。如下图。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">UIViewLayoutFeedbackLoopDebuggingThreshold 100 // 50...1000</span><br><span class="line">-NSViewLayoutFeedbackLoopDebuggingThreshold 100 // 50...1000</span><br><span class="line">// Logs to com.apple.UIKit:LayoutLoop or com.apple.AppKit:LayoutLoop</span><br></pre></td></tr></table></figure>
-
-<p>我们也可以打全局的异常断点<code>exception break point</code>。<br>在调试窗口也可以用LLDB命令po出一些调试信息。</p>
-<p><img src="http://upload-images.jianshu.io/upload_images/425102-b1b1b0f8156b3f20.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="Snip20160731_6.png"></p>
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>这个Xcode 8 给我们的Autolayout融合了之前Autoresizing masks的用法，使两个合并在一起使用，这样不同场景我们可以有更多的选择，可以更加灵活的处理布局的问题。还允许我们能手动调节constraints警告优先级别。</p>
-<p>针对macOS的布局问题，又给我们带来了新的控件NSGridView</p>
-<p>最后给我们带来的新的调试Layout Feedback Loop Debugging的工具，能让我们平时调试起来比较头疼的问题，有了工具可以有据可循，迅速定位问题，查找问题。</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1522,7 +1529,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">23</span>
+          <span class="site-state-item-count">24</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1566,7 +1573,7 @@
 <div class="copyright">
   
   &copy; 2019 – 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
