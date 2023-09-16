@@ -12,12 +12,12 @@
 
 <link rel="stylesheet" href="/css/main.css">
 
-<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 <link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"nealwangzi.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+    var CONFIG = {"hostname":"nealwangzi.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
   <meta name="description" content="Java NIO 使用Java NIO（New I&#x2F;O）是Java SE 1.4中引入的一组API，用于处理I&#x2F;O操作。与传统的Java I&#x2F;O API相比，NIO提供了更好的可扩展性和更高的性能。 在传统的Java I&#x2F;O API中，I&#x2F;O操作是通过流（Stream）进行的，即从InputStream或OutputStream中读取或写入数据。流">
@@ -28,9 +28,9 @@
 <meta property="og:description" content="Java NIO 使用Java NIO（New I&#x2F;O）是Java SE 1.4中引入的一组API，用于处理I&#x2F;O操作。与传统的Java I&#x2F;O API相比，NIO提供了更好的可扩展性和更高的性能。 在传统的Java I&#x2F;O API中，I&#x2F;O操作是通过流（Stream）进行的，即从InputStream或OutputStream中读取或写入数据。流">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-04-30T04:06:14.000Z">
-<meta property="article:modified_time" content="2023-04-30T04:20:45.459Z">
-<meta property="article:author" content="neal安东尼">
-<meta property="article:tag" content="日常,技术,分享">
+<meta property="article:modified_time" content="2023-09-16T10:43:40.406Z">
+<meta property="article:author" content="安东尼">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="https://nealwangzi.github.io/2023/04/30/Java-NIO-%E4%BD%BF%E7%94%A8/">
@@ -163,7 +163,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpeg">
-      <meta itemprop="name" content="neal安东尼">
+      <meta itemprop="name" content="安东尼">
       <meta itemprop="description" content="">
     </span>
 
@@ -181,10 +181,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-04-30 12:06:14 / 修改时间：12:20:45" itemprop="dateCreated datePublished" datetime="2023-04-30T12:06:14+08:00">2023-04-30</time>
+              <time title="创建时间：2023-04-30 12:06:14" itemprop="dateCreated datePublished" datetime="2023-04-30T12:06:14+08:00">2023-04-30</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-09-16 18:43:40" itemprop="dateModified" datetime="2023-09-16T18:43:40+08:00">2023-09-16</time>
+              </span>
 
           
 
@@ -202,10 +208,11 @@
 <p>Java NIO API的设计目标是提供高效的I&#x2F;O操作，以满足不断增长的数据处理需求。NIO引入了Buffer、Channel、Selector等概念。</p>
 <p>Buffer是一个对象，用于存储数据。可以将数据写入Buffer，也可以从Buffer中读取数据。Buffer提供了一些方法，使得可以通过内部指针访问Buffer中的数据。</p>
 <p>Channel是数据的源或目标，例如文件或网络连接。Channel类似于流，但与流不同的是，可以同时在Channel中进行读写操作。此外，Channel比流更快，并且可以异步地读取或写入数据。</p>
-<p>Selector是一种轮询机制，用于选择可以进行I&#x2F;O操作的Channel。通过Selector，可以将单个线程监视多个Channel的I&#x2F;O事件。这样可以将线程数量减少到一两个，从而提高系统性能。</p>
+<p>Selector是一种轮询机制，用于选择可以进行I&#x2F;O操作的Channel。通过Selector，可以将单个线程监视多个Channel的I&#x2F;O事件。这样可以将线程数量减少到一两个，从而提高系统性能。ß</p>
 <p>NIO提供了一组文件I&#x2F;O操作的API，称为NIO.2，也称为Java NIO.2或Java 7 NIO。</p>
 <p>总之，Java NIO提供了更高效、更灵活的I&#x2F;O操作API，适用于需要处理大量数据或需要实时处理数据的场景。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NIO.2的官方文档可以在以下地址找到：</span><br><span class="line"></span><br><span class="line">https://docs.oracle.com/javase/tutorial/essential/io/fileio.html</span><br><span class="line"></span><br><span class="line">此外，Oracle官方提供了一份更为详细的API文档：</span><br><span class="line"></span><br><span class="line">https://docs.oracle.com/javase/8/docs/api/java/nio/file/package-summary.html</span><br><span class="line"></span><br><span class="line">这些文档提供了NIO.2的详细说明、示例和API参考，可以帮助开发者更好地了解和使用NIO.2。</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">NIO.2的官方文档可以在以下地址找到：</span><br><span class="line"></span><br><span class="line">https://docs.oracle.com/javase/tutorial/essential/io/fileio.html</span><br><span class="line"></span><br><span class="line">此外，Oracle官方提供了一份更为详细的API文档：</span><br><span class="line"></span><br><span class="line">https://docs.oracle.com/javase/8/docs/api/java/nio/file/package-summary.html</span><br><span class="line"></span><br><span class="line">这些文档提供了NIO.2的详细说明、示例和API参考，可以帮助开发者更好地了解和使用NIO.2。</span><br></pre></td></tr></table></figure>
 
 <p>NIO.2是Java SE 7中引入的一组API，用于文件I&#x2F;O操作和文件系统操作。它建立在NIO的基础之上，提供了更多的功能和更高效的性能。</p>
 <p>Java NIO.2引入了一个新的文件操作API，其中的核心类是java.nio.file包中的类。java.nio.file包提供了一个面向对象的、跨平台的文件系统API，包括文件的创建、删除、复制、移动、读写等操作，以及获取文件属性、文件系统的遍历、文件系统监控等功能。</p>
@@ -223,7 +230,7 @@
 </li>
 </ol>
 <p>以下是一个简单的示例，展示了如何使用NIO.2读取文件内容并输出到控制台：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">import java.io.IOException;</span><br><span class="line">import java.nio.charset.StandardCharsets;</span><br><span class="line">import java.nio.file.Files;</span><br><span class="line">import java.nio.file.Path;</span><br><span class="line">import java.nio.file.Paths;</span><br><span class="line">import java.util.List;</span><br><span class="line"></span><br><span class="line">public class ReadFileExample &#123;</span><br><span class="line">    public static void main(String[] args) throws IOException &#123;</span><br><span class="line">        // 获取文件路径</span><br><span class="line">        Path path = Paths.get(&quot;myfile.txt&quot;);</span><br><span class="line"></span><br><span class="line">        // 读取文件内容</span><br><span class="line">        List&lt;String&gt; lines = Files.readAllLines(path, StandardCharsets.UTF_8);</span><br><span class="line"></span><br><span class="line">        // 输出文件内容</span><br><span class="line">        for (String line : lines) &#123;</span><br><span class="line">            System.out.println(line);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.nio.charset.StandardCharsets;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Files;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Path;</span><br><span class="line"><span class="keyword">import</span> java.nio.file.Paths;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ReadFileExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException &#123;</span><br><span class="line">        <span class="comment">// 获取文件路径</span></span><br><span class="line">        <span class="type">Path</span> <span class="variable">path</span> <span class="operator">=</span> Paths.get(<span class="string">&quot;myfile.txt&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 读取文件内容</span></span><br><span class="line">        List&lt;String&gt; lines = Files.readAllLines(path, StandardCharsets.UTF_8);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 输出文件内容</span></span><br><span class="line">        <span class="keyword">for</span> (String line : lines) &#123;</span><br><span class="line">            System.out.println(line);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>在此示例中，首先使用Paths.get()方法创建一个Path对象，指定要读取的文件名。然后使用Files.readAllLines()方法读取文件内容，并将其存储在List<String>对象中。最后，使用for循环输出文件内容。</p>
 <p>除了读取文件，NIO.2还提供了许多其他的文件操作方法，例如写入文件、复制文件、移动文件、删除文件等。要了解更多NIO.2的信息，可以参考官方文档。</p>
@@ -235,6 +242,9 @@
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Java/" rel="tag"># Java</a>
+          </div>
 
         
 
@@ -310,9 +320,9 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="neal安东尼"
+    <img class="site-author-image" itemprop="image" alt="安东尼"
       src="/images/avatar.jpeg">
-  <p class="site-author-name" itemprop="name">neal安东尼</p>
+  <p class="site-author-name" itemprop="name">安东尼</p>
   <div class="site-description" itemprop="description"></div>
 </div>
 <div class="site-state-wrap motion-element">
@@ -332,7 +342,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">19</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -371,9 +381,9 @@
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">neal安东尼</span>
+  <span class="author" itemprop="copyrightHolder">安东尼</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
 
         
@@ -399,12 +409,14 @@
 <script src="/js/motion.js"></script>
 
 
-<script src="/js/schemes/muse.js"></script>
+<script src="/js/schemes/pisces.js"></script>
 
 
 <script src="/js/next-boot.js"></script>
 
 
+  <script defer src="/lib/three/three.min.js"></script>
+    <script defer src="/lib/three/three-waves.min.js"></script>
 
 
   
